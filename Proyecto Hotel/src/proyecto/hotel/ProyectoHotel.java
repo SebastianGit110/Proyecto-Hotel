@@ -12,14 +12,15 @@ public class ProyectoHotel {
         //Mensaje Bienvenida
         System.out.println("Le damos la bienvenida al hotel UMB");
         
-        //Estructura hashtable para guardar los adultos
-        Hashtable<Integer, Adultos> adultos = new Hashtable<>(); //Podemos poner Object para especificar que es objeto el valor
-        Hashtable<Integer, Niños> niños = new Hashtable<>();
+        //Instanciacion de objetos para llenar los hashtables creados en cada clase
+        Adultos adulto = new Adultos(1);
+        Niños niño = new Niños(1);
         
         //Variables que van a contar info de la reserva
         int NumAdu = 0, NumNi = 0, NumClientes = 0, NumHab = 0;
         String TipoHab = "";
         int ConMat = 0, ConFam = 0, ConSui = 0;
+        
         //Keys de los hashtable
         int ConAdu = 0, ConNi = 0;
         
@@ -35,16 +36,26 @@ public class ProyectoHotel {
         
         //Cuantos Adultos y niños
         System.out.println("\nCuantas personas van a hospedarse");
-        NumClientes = in.nextInt();
-        
-        //Cantidad Adultos
-        System.out.println("Cuantos son adultos");
-        NumAdu = in.nextInt();
+        NumClientes = in.nextInt();       
+       
+        for(int i=0;i<5;i++){
+            //Cantidad Adultos
+            System.out.println("Cuantos son adultos");
+            NumAdu = in.nextInt();
+            if(NumAdu>NumClientes){
+                System.out.println("Ha ingresado un numero mayor que el numero de clientes");
+                i--;
+                continue;
+            }
+            else{
+                break;
+            }
+        }
         
         //Llena adultos llamando al hashtable de la clase
         for(int i=0;i<NumAdu;i++){
-            adultos.put(ConAdu, new Adultos());
-            ConAdu++;
+            adulto.llenarPersona(ConAdu);
+            ConAdu++; //Llave del hashtable
         }
         
         for(int i=0;i<2;i++){
@@ -72,8 +83,8 @@ public class ProyectoHotel {
                 else{
                     //Llena niños llamando al hashtable de la clase
                     for(int j=0;j<NumNi;j++){
-                        niños.put(ConNi, new Niños());
-                        ConNi++;
+                        niño.llenarPersona(ConNi);
+                        ConNi++; //Llave del hashtable
                     }
                     break;
                 }
@@ -100,15 +111,14 @@ public class ProyectoHotel {
             }
         }
         
-        System.out.println("Muestra datos");
-        for(int i=0;i<NumAdu;i++){
-            Adultos adult = (Adultos) adultos.get(i);
-            adult.getDatos();            
+        //Muestra informacion
+        System.out.println("Muestra datos\n");
+        for(int j=0;j<NumAdu;j++){
+            adulto.getDatos(j);
         }
         
-        for(int i=0;i<NumNi;i++){
-            Object objeto = niños.get(i);
-            ((Niños)objeto).getDatos();
+        for(int j=0;j<NumNi;j++){
+            niño.getDatos(j);
         }
 
         System.out.println("Haz eligido:\n" + ConMat + " habitaciones matrimonial\n" 

@@ -7,8 +7,8 @@ public abstract class Personas {
     protected String numeroCelular;
     
     //Metodos abstractos
-    abstract void llenarPersona();
-    abstract void getDatos();
+    abstract void llenarPersona(int i);
+    abstract void getDatos(int j);
     
     //Getters y Setters
     public String getNombre(){
