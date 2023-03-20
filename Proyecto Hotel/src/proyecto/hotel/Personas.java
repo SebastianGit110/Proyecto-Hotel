@@ -8,6 +8,7 @@ public abstract class Personas {
     
     //Metodos abstractos
     abstract void llenarPersona();
+    abstract void getDatos();
     
     //Getters y Setters
     public String getNombre(){

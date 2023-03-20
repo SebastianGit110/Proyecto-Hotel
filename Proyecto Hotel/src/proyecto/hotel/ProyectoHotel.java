@@ -7,16 +7,21 @@ public class ProyectoHotel {
 
     public static void main(String[] args) {
         Scanner in = new Scanner (System.in);
+        Scanner in2 = new Scanner (System.in);
         
         //Mensaje Bienvenida
         System.out.println("Le damos la bienvenida al hotel UMB");
         
         //Estructura hashtable para guardar los adultos
-        Hashtable<Integer, Object> adultos = new Hashtable<>();
-        Hashtable<Integer, Object> niños = new Hashtable<>();
+        Hashtable<Integer, Adultos> adultos = new Hashtable<>(); //Podemos poner Object para especificar que es objeto el valor
+        Hashtable<Integer, Niños> niños = new Hashtable<>();
         
-        int NumClientes;
-        int NumAdu = 0, NumNi = 0;
+        //Variables que van a contar info de la reserva
+        int NumAdu = 0, NumNi = 0, NumClientes = 0, NumHab = 0;
+        String TipoHab = "";
+        int ConMat = 0, ConFam = 0, ConSui = 0;
+        //Keys de los hashtable
+        int ConAdu = 0, ConNi = 0;
         
         //Muestra tipos de habitaiones
         HabitacionMatrimonial habMat = new HabitacionMatrimonial(1, 0, 3, "2", 250000);
@@ -38,63 +43,75 @@ public class ProyectoHotel {
         
         //Llena adultos llamando al hashtable de la clase
         for(int i=0;i<NumAdu;i++){
-            adultos.put(NumAdu, new Adultos());
+            adultos.put(ConAdu, new Adultos());
+            ConAdu++;
         }
         
         for(int i=0;i<2;i++){
             if(NumAdu == NumClientes){
                 break;
             }
-            else{
-                //Verifica que la cantidad de niños sea igual a la cantidad de clientes
-                for(int l=0;l<5;l++){
+            else{                
+                for(int l=0;l<5;l++){                                      
                     //Cantidad Niños
                     System.out.println("Cuantos son niños");
                     NumNi = in.nextInt();       
-                    if((NumNi+NumAdu)!=NumClientes){
+                    if((NumNi+NumAdu)!=NumClientes){ //Verifica que la cantidad de niños y adultos sea igual a la cantidad de clientes
                         System.out.println("No coinciden los datos con las personas que se van a hospedar");
-                        i--;
+                        l--;//
                         continue;
                     }
                     else{                        
                         break;
                     }
                 }
-                if(NumNi==NumClientes){
+                if(NumNi==NumClientes){ //Verifica que hayan adultos
                     System.out.println("Se necesita un mayor de edad para continuar con el proceso");
                     break;                 
                 }    
                 else{
                     //Llena niños llamando al hashtable de la clase
                     for(int j=0;j<NumNi;j++){
-                        niños.put(NumNi, new Niños());
+                        niños.put(ConNi, new Niños());
+                        ConNi++;
                     }
                     break;
                 }
             }          
         }
-               
-//        //Verifica que la cantidad de niños sea igual a la cantidad de clientes
-//        for(int i=0;i<5;i++){
-//            //Cantidad Niños
-//            System.out.println("Cuantos son niños");
-//            NumNi = in.nextInt();       
-//            if((NumNi+NumAdu)!=NumClientes){
-//                System.out.println("No coinciden los datos con las personas que se van a hospedar");
-//                i--;
-//                continue;
-//            }
-//            else{
-//                break;
-//            }
-//        }
-//          
-//        //Llena niños llamando al hashtable de la clase
-//        for(int i=0;i<NumNi;i++){
-//            niños.put(NumNi, new Niños());
-//        }
         
+        //Numero de habitaciones
+        System.out.println("Cuantas habitaciones necesitan");
+        NumHab = in.nextInt();
         
+        //Tipo de habitaciones
+        for(int i=0;i<NumHab;i++){
+            System.out.println("Cual es la " + (i+1) + " habitacion");
+            TipoHab = in2.nextLine();
+            
+            if(TipoHab.equals("Matrimonial")){
+                ConMat++;
+            }
+            else if(TipoHab.equals("Familiar")){
+                ConFam++;
+            }
+            else if(TipoHab.equals("Suite")){
+                ConSui++;
+            }
+        }
+        
+        System.out.println("Muestra datos");
+        for(int i=0;i<NumAdu;i++){
+            Adultos adult = (Adultos) adultos.get(i);
+            adult.getDatos();            
+        }
+        
+        for(int i=0;i<NumNi;i++){
+            Object objeto = niños.get(i);
+            ((Niños)objeto).getDatos();
+        }
+
+        System.out.println("Haz eligido:\n" + ConMat + " habitaciones matrimonial\n" 
+                + ConFam + " habitaciones familiar\n" + ConSui + " habitaciones suite\n");
     }
-    
 }

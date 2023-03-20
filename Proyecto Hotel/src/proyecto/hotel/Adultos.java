@@ -16,6 +16,11 @@ public class Adultos extends Personas{
     }       
     
     @Override
+    public void getDatos(){
+        System.out.println(getNombre());
+    }
+    
+    @Override
     public void llenarPersona(){        
     }
 }

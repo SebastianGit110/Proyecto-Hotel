@@ -12,6 +12,10 @@ public class Niños extends Personas{
         this.id = Integer.parseInt(ID);
     }
     
+    public void getDatos(){
+        System.out.println(getNombre());
+    }
+    
     @Override
     public void llenarPersona(){
         

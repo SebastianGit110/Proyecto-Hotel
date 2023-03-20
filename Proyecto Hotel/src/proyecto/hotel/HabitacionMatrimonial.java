@@ -19,4 +19,6 @@ public class HabitacionMatrimonial extends Habitacion{
         JOptionPane.showMessageDialog(null, Aux,
                 "Datos de habitacion Matrimonial", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    
 }
