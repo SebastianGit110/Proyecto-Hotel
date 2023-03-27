@@ -23,6 +23,13 @@ public class Hotel {
         //Variable contadora de personas
         int NumClientes = 0, NumAdu = 0, NumNi = 0;
         
+        //Variable que cuentan dias de estadia
+        int canDias = 0;
+        
+        //Variables que cuentan cuantas habitaciones
+        String TipoHab = "";
+        int  NumHab = 0, ConMat = 0, ConFam = 0, ConSui = 0;
+        
         //Muestra las habitaciones
         HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250000);
         habmatrimonial.mostrarHabitacion();
@@ -103,6 +110,28 @@ public class Hotel {
                         }          
                     }
                     //
+
+                    //Numero de habitaciones
+                    String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
+                    NumHab = Integer.parseInt(numHab);
+
+                    //Tipo de habitaciones
+                    for(int i=0;i<NumHab;i++){
+                        TipoHab = JOptionPane.showInputDialog("Cual es la " + (i+1) + " habitacion");
+
+                        if(TipoHab.equals("Matrimonial")){
+                            ConMat++;
+                        }
+                        else if(TipoHab.equals("Familiar")){
+                            ConFam++;
+                        }
+                        else if(TipoHab.equals("Suite")){
+                            ConSui++;
+                        }
+                    }
+                    
+                    String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
+                    canDias = Integer.parseInt(CanDias);
                     
                     break;     
                 case 2:
@@ -133,10 +162,10 @@ public class Hotel {
         }
         
         //Muestra datos de las reservas
-        for(int i=0;i<NumAdu;i++){
+        for(int i=0;i<NumAdu;i++){//Arreglar para que se vean por la cantidad de reservas
             adulto.getDatos(i);
         }
-        for(int i=0;i<NumNi;i++){
+        for(int i=0;i<NumNi;i++){//Arreglar para que se vean por la cantidad de reservas
             niño.getDatos(i);
         }
         
