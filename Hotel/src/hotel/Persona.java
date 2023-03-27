@@ -1,81 +1,41 @@
 package hotel;
 
-import javax.swing.JOptionPane;
-
-public class Persona extends Reservas{
-    public String nombre;
+public abstract class Persona{
+    public String nombres;
     public int edad;
-    public int fechaIngreso, fechaSalida;
-    public int id;
-    public String numeroCelular;
+    public String celular;
+    //public int fechaIngreso, fechaSalida;
+    public String id;   
     public String direccion;
+//    public int canMenores = 0;
 //    public int numeroHabitaciones;
-//    public String cualHabitacion;
-        
-    //Constructor vacio
+//    public String cualHabitacion;        
     
-    public Persona(){
-    }
+    abstract void llenarDatosReserva(int i);
+    abstract void llenarDatosCheckin();
+    abstract void getDatos(int i);
     
-    //Para reservas
-    public Persona(String i){
-        this.nombre = JOptionPane.showInputDialog("Nombres: ");
-        String Edad = JOptionPane.showInputDialog("Edad: ");
-        this.edad = Integer.parseInt(Edad);
+    //Getters
 
-        String FechaIngreso = JOptionPane.showInputDialog("Fecha de ingreso: ");
-        this.fechaIngreso = Integer.parseInt(FechaIngreso);
-        String FechaSalida = JOptionPane.showInputDialog("Fecha de salida: ");
-        this.fechaSalida = Integer.parseInt(FechaSalida);
-    }
-    
-    //Para Check in
-    public Persona(int numPerso){       
-        String ID = JOptionPane.showInputDialog("Numero de identificacion: ");
-        this.id = Integer.parseInt(ID);
-        for(int j=0;j<numPerso;j++){
-            Persona objectRes = (Persona) reserva.get(j);
-            if(objectRes.getEdad()>=18){
-            this.numeroCelular = JOptionPane.showInputDialog("Numero de celular: ");
-            this.direccion = JOptionPane.showInputDialog("Direccion: ");
-            } 
-        }
-              
-    }
-
-    @Override
-    public String toString() {
-        return "Nombre=" + nombre + ", edad=" + edad + ", fechaIngreso=" + fechaIngreso + ", fechaSalida=" + fechaSalida;
-    }
-    
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
     public int getEdad() {
         return edad;
     }
 
-    public int getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public int getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public String getNumeroCelular() {
-        return numeroCelular;
+    public String getCelular() {
+        return celular;
     }
 
     public String getDireccion() {
         return direccion;
     }
-    
     
     
 }

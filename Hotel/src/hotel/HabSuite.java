@@ -8,6 +8,7 @@ public class HabSuite extends Habitaciones{
         super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
     }
     
+    @Override
     public void mostrarHabitacion(){
         String Aux = "";
         

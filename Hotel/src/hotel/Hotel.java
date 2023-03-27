@@ -13,8 +13,15 @@ public class Hotel {
         //Mensaje Bienvenida
         System.out.println("Le damos la bienvenida al hotel UMB");
         
-        Persona cliente = new Persona();
-        Reservas reservas = new Reservas();
+        //Instacias de las clases con constructor vacio
+        Adultos adulto = new Adultos();
+        Niños niño = new Niños();
+        
+        //Keys de los hashtable
+        int ConAdu = 0, ConNi = 0;
+        
+        //Variable contadora de personas
+        int NumClientes = 0, NumAdu = 0, NumNi = 0;
         
         //Muestra las habitaciones
         HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250000);
@@ -31,10 +38,7 @@ public class Hotel {
         //Variables que verifican la opcion
         boolean reserva = false, checkin = false, checkout = false;
         
-        //Variable contadora de personas
-        int numPerso = 0;
-        
-        for(int i=0;i<6;i++){
+        for(int j=0;j<6;j++){
             String Opcion = JOptionPane.showInputDialog(null,"1. Realizar reserva \n2. Realizar check-in \n3. Realizar check-out \n4. Salir");              
             int opcion = Integer.parseInt(Opcion);            
 
@@ -42,44 +46,99 @@ public class Hotel {
                 case 1:
                     reserva = true;
                     System.out.println("\nRealizar reserva");
-                    System.out.println("Cuantas personas quiere ingresar");
-                    numPerso = in.nextInt();
+                    System.out.println("Cuantas personas van a hospedarse");
+                    NumClientes = in.nextInt();
                     
-                    for(int j=0;j<numPerso;j++){
-                        reservas.llenarReserva(new Persona("2"), j);
-                    }                    
-                    break;
+                    //
+                    for(int i=0;i<5;i++){
+                        //Cantidad Adultos
+                        System.out.println("Cuantos son adultos");
+                        NumAdu = in.nextInt();
+                        if(NumAdu>NumClientes){
+                            System.out.println("Ha ingresado un numero mayor que el numero de clientes");
+                            i--;
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+
+                    //Llena adultos llamando al hashtable de la clase
+                    for(int i=0;i<NumAdu;i++){
+                        adulto.llenarDatosReserva(ConAdu);
+                        ConAdu++; //Llave del hashtable
+                    }
+
+                    for(int i=0;i<2;i++){
+                        if(NumAdu == NumClientes){
+                            break;
+                        }
+                        else{                
+                            for(int l=0;l<5;l++){                                      
+                                //Cantidad Niños
+                                System.out.println("Cuantos son niños");
+                                NumNi = in.nextInt();       
+                                if((NumNi+NumAdu)!=NumClientes){ //Verifica que la cantidad de niños y adultos sea igual a la cantidad de clientes
+                                    System.out.println("No coinciden los datos con las personas que se van a hospedar");
+                                    l--;//
+                                    continue;
+                                }
+                                else{                        
+                                    break;
+                                }
+                            }
+                            if(NumNi==NumClientes){ //Verifica que hayan adultos
+                                System.out.println("Se necesita un mayor de edad para continuar con el proceso");
+                                break;                 
+                            }    
+                            else{
+                                //Llena niños llamando al hashtable de la clase
+                                for(int l=0;l<NumNi;l++){
+                                    niño.llenarDatosReserva(ConNi);
+                                    ConNi++; //Llave del hashtable
+                                }
+                                break;
+                            }
+                        }          
+                    }
+                    //
                     
+                    break;     
                 case 2:
                     if(reserva==false){
                         System.out.println("Primero tienes que realizar la reserva");
-                        i--;
+                        j--;
                         continue;
                     }
                     checkin = true;
+                    
                     System.out.println("Realizar check in");
-                    for(int j=0;j<numPerso;j++){
-                        reservas.llenarCheckIn(new Persona(numPerso), j);
-                    }                                                          
+                    
                     break;                    
                 case 3: 
                     checkout = true;
                     System.out.println("Realizar check out");
                     if(reserva==false){
                         System.out.println("Primero tienes que realizar la reserva");
-                        i--;
+                        j--;
                         continue;
                     }
                     break;                    
                 case 4:
                     System.out.println("Salir");
-                    i = 6;
+                    j = 6;
                     break;
             }
-        } 
+        }
         
-        //reservas.mostrarReserva(numPerso);
-        //reservas.mostrarCheckIn(numPerso);
-        reservas.mostrarInfoReserva(numPerso);
+        //Muestra datos de las reservas
+        for(int i=0;i<NumAdu;i++){
+            adulto.getDatos(i);
+        }
+        for(int i=0;i<NumNi;i++){
+            niño.getDatos(i);
+        }
+        
     }
 }
