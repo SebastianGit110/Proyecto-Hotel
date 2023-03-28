@@ -12,8 +12,9 @@ public abstract class Persona{
 //    public String cualHabitacion;        
     
     abstract void llenarDatosReserva(int i);
-    abstract void llenarDatosCheckin();
-    abstract void getDatos(int i);
+    abstract void llenarDatosCheckin(int i);
+    abstract void getDatosReserva(int i);
+    abstract void getDatosCheckin();
     
     //Getters
 

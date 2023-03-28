@@ -1,15 +1,19 @@
 package hotel;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
 public class Adultos extends Persona{
 
     //Hashtable para llenar Adultos
-    Hashtable<Integer, Object> adultos = new Hashtable<>();
+    Hashtable<Integer, Object> adultosReserva = new Hashtable<>();
+    Hashtable<Integer, String> adultosCheckin = new Hashtable<>();
     
     //Constructor vacio
     public Adultos(){
+    }
+    public Adultos(boolean i){
     }
     
     //Constructor para Reserva Adultos
@@ -21,28 +25,38 @@ public class Adultos extends Persona{
     }
     
     //Constructor para checkin Adultos
-    public Adultos(String i){
-        this.id = JOptionPane.showInputDialog("Numero de identificacion Adulto: ");
-        this.direccion = JOptionPane.showInputDialog("Direccion del Adulto: ");
+//    public Adultos(String i){//Lo podemos trabajar como <Integer, String>
+//        this.id = JOptionPane.showInputDialog("Numero de identificacion Adulto: ");
+//        this.direccion = JOptionPane.showInputDialog("Direccion del Adulto: ");
+//    }
+    
+    //Metodo que llena los datos de la reserva
+    @Override
+    public void llenarDatosReserva(int ConAdu){
+        adultosReserva.put(ConAdu, new Adultos(1));
+    }
+    
+    //Metodo que llena los datos del check in
+    @Override
+    public void llenarDatosCheckin(int ConAdu){
+        adultosCheckin.put(0, this.id = JOptionPane.showInputDialog("Numero de identificacion Adulto: "));
+        adultosCheckin.put(1, this.direccion = JOptionPane.showInputDialog("Direccion del Adulto: "));
     }
     
     //Metodo que muestra datos de la reserva
     @Override
-    public void llenarDatosReserva(int ConAdu){
-        adultos.put(ConAdu, new Adultos(1));
+    public void getDatosReserva(int i){
+        Adultos objectAduRes = (Adultos) adultosReserva.get(i);
+        System.out.println(objectAduRes.getNombres());
     }
     
-    //Metodo que muestra datos del check in
+    //Metodo que muestra datos del checkin
     @Override
-    public void llenarDatosCheckin(){
-    
-    }
-    
-    //Metodo que muestra datos
-    @Override
-    public void getDatos(int i){
-        Adultos objectAdu = (Adultos) adultos.get(i);
-        System.out.println(objectAdu.getNombres());
+    public void getDatosCheckin(){       
+        Enumeration recorrer = adultosCheckin.elements();
+        while(recorrer.hasMoreElements()){
+            System.out.println("Valores: " + recorrer.nextElement());
+        }
     }
 
 }

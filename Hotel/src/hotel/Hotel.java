@@ -141,8 +141,17 @@ public class Hotel {
                         continue;
                     }
                     checkin = true;
-                    
                     System.out.println("Realizar check in");
+                    
+                    for(int l=0;l<NumAdu;l++){
+                        adulto.llenarDatosCheckin(ConAdu);
+                        ConAdu++; //Llave del hashtable
+                    }
+                    
+                    for(int l=0;l<NumNi;l++){
+                        niño.llenarDatosCheckin(ConNi);
+                        ConNi++; //Llave del hashtable
+                    }
                     
                     break;                    
                 case 3: 
@@ -158,15 +167,25 @@ public class Hotel {
                     System.out.println("Salir");
                     j = 6;
                     break;
+                default:
+                    System.out.println("Ingrese una opcion valida");
             }
         }
         
         //Muestra datos de las reservas
         for(int i=0;i<NumAdu;i++){//Arreglar para que se vean por la cantidad de reservas
-            adulto.getDatos(i);
+            adulto.getDatosReserva(i);
         }
         for(int i=0;i<NumNi;i++){//Arreglar para que se vean por la cantidad de reservas
-            niño.getDatos(i);
+            niño.getDatosReserva(i);
+        }
+        
+        //Muestra datos de los check in
+        for(int i=0;i<NumAdu;i++){
+            adulto.getDatosCheckin();
+        }
+        for(int i=0;i<NumNi;i++){
+            niño.getDatosCheckin();
         }
         
     }
