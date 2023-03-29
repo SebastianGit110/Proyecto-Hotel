@@ -38,7 +38,7 @@ public class Adultos extends Persona{
     
     //Metodo que llena los datos del check in
     @Override
-    public void llenarDatosCheckin(int ConAdu){
+    public void llenarDatosCheckin(){
         adultosCheckin.put(0, this.id = JOptionPane.showInputDialog("Numero de identificacion Adulto: "));
         adultosCheckin.put(1, this.direccion = JOptionPane.showInputDialog("Direccion del Adulto: "));
     }

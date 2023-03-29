@@ -37,8 +37,8 @@ public class Niños extends Persona{
     
     //Metodo que llena los datos del check in
     @Override
-    public void llenarDatosCheckin(int ConNi){
-        niñosCheckin.put(ConNi, this.id = JOptionPane.showInputDialog("Numero de identificacion del Niño: "));
+    public void llenarDatosCheckin(){
+        niñosCheckin.put(0, this.id = JOptionPane.showInputDialog("Numero de identificacion del Niño: "));
     }
     
     //Metodo que muestra datos de la reserva
@@ -51,9 +51,13 @@ public class Niños extends Persona{
     //Metodo que muestra datos del checkin
     @Override
     public void getDatosCheckin(){
-        Enumeration recorrer = niñosCheckin.elements();
+        Enumeration recorrer = niñosCheckin.keys();
+        Object clave;
+        Object valor;
         while(recorrer.hasMoreElements()){
-            System.out.println("Valor: " + recorrer.nextElement());
+            clave = recorrer.nextElement();
+            valor = niñosCheckin.get(clave);
+            System.out.println("Clave: " + clave + " Valor: " + valor);
         }
     }
 }

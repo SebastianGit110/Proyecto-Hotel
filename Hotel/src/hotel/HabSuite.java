@@ -4,6 +4,10 @@ import javax.swing.JOptionPane;
 
 public class HabSuite extends Habitaciones{
 
+    //Variables booleanas para contar servicios
+    public boolean cafeteria = false, electrodomesticos = false, miniBar = false, jacuzzi = false;
+    public boolean aireAcon = false, wiFi = false, cajaFuerte = false, productosHigiene = false;
+    
     public HabSuite(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, int valor) {
         super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
     }
@@ -17,6 +21,11 @@ public class HabSuite extends Habitaciones{
         
         JOptionPane.showMessageDialog(null, Aux,
                 "Datos de habitacion Matrimonial", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    @Override
+    public void mostrarServicios(){
+        
     }
     
 }
