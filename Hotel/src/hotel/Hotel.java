@@ -16,6 +16,7 @@ public class Hotel {
         //Instacias de las clases con constructor vacio
         Adultos adulto = new Adultos();
         Niños niño = new Niños();
+        Reservas reservas = new Reservas();
 
         //Keys de los hashtable
         int ConAdu = 0, ConNi = 0;
@@ -30,22 +31,13 @@ public class Hotel {
         String TipoHab = "";
         int NumHab = 0, ConMat = 0, ConFam = 0, ConSui = 0;
 
-        //Muestra las habitaciones
-        HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250000);
-        habmatrimonial.mostrarHabitacion();
-
-        HabFamiliar habfamiliar = new HabFamiliar(2, 2, 4, "3", 350000);
-        habfamiliar.mostrarHabitacion();
-
-        HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400000);
-        habsuite.mostrarHabitacion();
-
         //Menu para elegir el servicio 
         //Variables que verifican la opcion
         boolean reserva = false, checkin = false, checkout = false;
 
-        for (int j = 0; j < 6; j++) {
-            String Opcion = JOptionPane.showInputDialog(null, "1. Realizar reserva \n2. Realizar check-in \n3. Realizar check-out \n4. Salir");
+        for (int j = 0; j < 8; j++) {
+            String Opcion = JOptionPane.showInputDialog(null, "1. Realizar reserva \n2. Realizar check-in "
+                    + "\n3. Mostrar tipo de habitacion \n4. Realizar check-out \n5. Salir");
             int opcion = Integer.parseInt(Opcion);
 
             switch (opcion) {
@@ -71,10 +63,8 @@ public class Hotel {
 
                     //Llena adultos llamando al hashtable de la clase
                     for (int i = 0; i < NumAdu; i++) {
-                        adulto.llenarDatosReserva(ConAdu);
-                        ConAdu++; //Llave del hashtable
+                        reservas.llenarReservaAdulto();
                     }
-
                     for (int i = 0; i < 2; i++) {
                         if (NumAdu == NumClientes) {
                             break;
@@ -97,15 +87,14 @@ public class Hotel {
                             } else {
                                 //Llena niños llamando al hashtable de la clase
                                 for (int l = 0; l < NumNi; l++) {
-                                    niño.llenarDatosReserva(ConNi);
-                                    ConNi++; //Llave del hashtable
+                                    reservas.llenarReservaNiño();
                                 }
                                 break;
                             }
                         }
                     }
                     //
-
+                    
                     //Numero de habitaciones
                     String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
                     NumHab = Integer.parseInt(numHab);
@@ -146,6 +135,17 @@ public class Hotel {
 
                     break;
                 case 3:
+                    //Muestra las habitaciones
+                    HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250000);
+                    habmatrimonial.mostrarHabitacion();
+
+                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 4, "3", 350000);
+                    habfamiliar.mostrarHabitacion();
+
+                    HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400000);
+                    habsuite.mostrarHabitacion();
+                    break;
+                case 4:
                     checkout = true;
                     System.out.println("Realizar check out");
                     if (reserva == false) {
@@ -154,30 +154,21 @@ public class Hotel {
                         continue;
                     }
                     break;
-                case 4:
+                case 5:
                     System.out.println("Salir");
                     j = 6;
                     break;
                 default:
                     System.out.println("Ingrese una opcion valida");
             }
-        }
+        }   
 
-        //Muestra datos de las reservas
-        for (int i = 0; i < NumAdu; i++) {//Arreglar para que se vean por la cantidad de reservas
-            adulto.getDatosReserva(i);
-        }
-        for (int i = 0; i < NumNi; i++) {//Arreglar para que se vean por la cantidad de reservas
-            niño.getDatosReserva(i);
-        }
-
-        //Muestra datos de los check in
-        for (int i = 0; i < NumAdu; i++) {
-            adulto.getDatosCheckin();
-        }
-        for (int i = 0; i < NumNi; i++) {
-            niño.getDatosCheckin();
-        }
-
+        //Muestra datos
+        reservas.mostrarReservaAdulto();
+        adulto.getDatosCheckin();
+        
+        reservas.mostrarReservaNiño();      
+        niño.getDatosCheckin();
+        
     }
 }
