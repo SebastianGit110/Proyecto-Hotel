@@ -56,16 +56,7 @@ public class Reservas{
             j++;
         }
     }
-    
-    //Metodos para eliminar usuarios
-    public void eliminarAdulto(int i){
-        reservaAdulto.remove(i);
-    }
-    
-    public void eliminarNiño(int i){
-        reservaNiño.remove(i);
-    }
-    
+ 
     //Metodos para mostrar los datos de cada usuario
     public void mostrarReservaAdulto(){
         for(Reservas i : reservaAdulto){
@@ -76,6 +67,27 @@ public class Reservas{
     public void mostrarReservaNiño(){
         for(Reservas i : reservaNiño){
             System.out.println("Nombre " + i.getNombres() + "\nEdad " + i.getEdad());
+        }
+    }
+    
+    //Metodos para eliminar usuarios
+    public void eliminarAdulto(int i){
+        reservaAdulto.remove(i);
+    }
+    
+    public void eliminarNiño(int i){
+        reservaNiño.remove(i);
+    }
+    
+    public void delUser(){
+        int indice = -1;
+        for(int i=0;i<reservaAdulto.size();i++){
+            Reservas adulto = reservaAdulto.get(i);
+            
+            if(adulto.getNombres().equals(" ")){
+                indice = reservaAdulto.indexOf(adulto);
+            }
+            
         }
     }
     
