@@ -96,7 +96,7 @@ public class Hotel {
                     //
                     
                     //Numero de habitaciones
-                    for(int m=0;m<4;m++){
+                    for(int m=0;m<5;m++){
                         String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
                         NumHab = Integer.parseInt(numHab);
                         
@@ -149,39 +149,42 @@ public class Hotel {
                     String delUser = JOptionPane.showInputDialog("Desea eliminar algun usuario");                   
                     
                     if(delUser.equals("Si") || delUser.equals("si")){
-                        for(int i=0;i<4;i++){
-                            String queUSer = JOptionPane.showInputDialog("1. Adulto \n2. Niño \n3. Salir");
+                        for(int i=0;i<6;i++){
+                            reservas.mostrarDatos();
+                            String queUSer = JOptionPane.showInputDialog("1. Adulto \n2. Niño \n3. Volver");
                             int queUser = Integer.parseInt(queUSer);
                             switch(queUser){
                                 case 1:
-                                    reservas.mosAdul();
-                                    System.out.println("Ingresa el numero del adulto a eliminar");
-                                    int queAdu = in2.nextInt(); //Variable que lee el indice del usuario a eliminar
+                                    System.out.println("Ingresa el nombre del adulto a eliminar");
+                                    String queAdu = in2.nextLine(); //Variable que lee el nombre del usuario a eliminar
                                     //Elimina el usuario en las reservas y en el check in
-                                    try{ //Trata error al digitar el indice que no existe
+                                    try{
                                         reservas.eliminarAdulto(queAdu);
-                                        adulto.eliminarUser(queAdu);
-                                        System.out.println("Usuario " + queAdu + " ha sido eliminado");
+                                        
+                                        int indiceAdu = reservas.getIndiceAdu(); //Variable que almacena el indice del adulto en la clase reserva
+                                        adulto.eliminarUser(indiceAdu); //Manda ese indice para eliminar el check in tambien
+                                        
                                     }catch(Exception e){
                                         System.out.println("Ha ocurrido un error");
                                     }
                                     
                                     break;
                                 case 2:
-                                    reservas.mosNi();
                                     System.out.println("Ingresa el numero del niño a eliminar");
-                                    int queNi = in2.nextInt(); //Variable que lee el indice del usuario a eliminar
+                                    String queNi = in2.nextLine(); //Variable que lee el nombre del usuario a eliminar
                                     //Elimina el usuario en las reservas y en el check in
-                                    try{ //Trata error al digitar el indice que no existe
+                                    try{
                                         reservas.eliminarNiño(queNi);
-                                        niño.eliminarUser(queNi);
-                                        System.out.println("Usuario " + queNi + " ha sido eliminado");
+                                        
+                                        int indiceNi = reservas.getIndiceNi(); //Variable que almacena el indice del niño en la clase reserva
+                                        niño.eliminarUser(indiceNi); //Manda ese indice para eliminar el check in tambien
+                                        
                                     }catch(Exception e){
                                         System.out.println("Ha ocurrido un error");
                                     }
                                     break;
                                 case 3:
-                                    i=4;
+                                    i=6;
                                     break;
                                 default:
                                     System.out.println("Ingrese una opcion valida");
@@ -189,6 +192,10 @@ public class Hotel {
                             }
                         }
                     }
+                    
+                    //Pedir servicios
+                    
+                    
                     break;
                 case 3:
                     //Muestra las habitaciones
