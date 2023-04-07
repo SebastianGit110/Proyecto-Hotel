@@ -156,20 +156,29 @@ public class Hotel {
                                 case 1:
                                     reservas.mosAdul();
                                     System.out.println("Ingresa el numero del adulto a eliminar");
-                                    int queAdu = in2.nextInt();//Variable que lee el indice del usuario a eliminar
+                                    int queAdu = in2.nextInt(); //Variable que lee el indice del usuario a eliminar
                                     //Elimina el usuario en las reservas y en el check in
-                                    reservas.eliminarAdulto(queAdu);
-                                    adulto.eliminarUser(queAdu);
-                                    System.out.println("Usuario " + queAdu + " ha sido eliminado");
+                                    try{ //Trata error al digitar el indice que no existe
+                                        reservas.eliminarAdulto(queAdu);
+                                        adulto.eliminarUser(queAdu);
+                                        System.out.println("Usuario " + queAdu + " ha sido eliminado");
+                                    }catch(Exception e){
+                                        System.out.println("Ha ocurrido un error");
+                                    }
+                                    
                                     break;
                                 case 2:
                                     reservas.mosNi();
                                     System.out.println("Ingresa el numero del niño a eliminar");
-                                    int queNi = in2.nextInt();//Variable que lee el indice del usuario a eliminar
+                                    int queNi = in2.nextInt(); //Variable que lee el indice del usuario a eliminar
                                     //Elimina el usuario en las reservas y en el check in
-                                    reservas.eliminarNiño(queNi);
-                                    niño.eliminarUser(queNi);
-                                    System.out.println("Usuario " + queNi + " ha sido eliminado");
+                                    try{ //Trata error al digitar el indice que no existe
+                                        reservas.eliminarNiño(queNi);
+                                        niño.eliminarUser(queNi);
+                                        System.out.println("Usuario " + queNi + " ha sido eliminado");
+                                    }catch(Exception e){
+                                        System.out.println("Ha ocurrido un error");
+                                    }
                                     break;
                                 case 3:
                                     i=4;
