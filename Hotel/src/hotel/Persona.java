@@ -13,6 +13,7 @@ public abstract class Persona{
     
     abstract void llenarDatosCheckin();
     abstract void getDatosCheckin();
+    abstract void eliminarUser(int i);
     
     //Getters
 

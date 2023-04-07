@@ -96,22 +96,33 @@ public class Hotel {
                     //
                     
                     //Numero de habitaciones
-                    String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
-                    NumHab = Integer.parseInt(numHab);
-
-                    //Tipo de habitaciones
-                    for (int i = 0; i < NumHab; i++) {
-                        TipoHab = JOptionPane.showInputDialog("Cual es la " + (i + 1) + " habitacion");
-
-                        if (TipoHab.equals("Matrimonial")) {
-                            ConMat++;
-                        } else if (TipoHab.equals("Familiar")) {
-                            ConFam++;
-                        } else if (TipoHab.equals("Suite")) {
-                            ConSui++;
+                    for(int m=0;m<4;m++){
+                        String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
+                        NumHab = Integer.parseInt(numHab);
+                        
+                        //Comprueba que el numero que ingrese sea >0
+                        if(NumHab <= 0){
+                            System.out.println("Tiene que elegir al menos una habitacion");
+                            continue;
                         }
-                    }
+                        
+                        //Tipo de habitaciones
+                        for (int i = 0; i < NumHab; i++) {
+                            TipoHab = JOptionPane.showInputDialog("Cual es la " + (i + 1) + " habitacion");
 
+                            if (TipoHab.equals("Matrimonial") || TipoHab.equals("matrimonial")) {
+                                ConMat++;
+                            } else if (TipoHab.equals("Familiar") || TipoHab.equals("familiar")) {
+                                ConFam++;
+                            } else if (TipoHab.equals("Suite") || TipoHab.equals("suite")) {
+                                ConSui++;
+                            }
+                        }
+                        break;
+                    }
+                    
+
+                    //Dias para reservar
                     String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
                     canDias = Integer.parseInt(CanDias);
 
@@ -124,7 +135,8 @@ public class Hotel {
                     }
                     checkin = true;
                     System.out.println("Realizar check in");
-
+                    
+                    //Llena los datos del check in
                     for (int l = 0; l < NumAdu; l++) {
                         adulto.llenarDatosCheckin();
                     }
@@ -132,17 +144,52 @@ public class Hotel {
                     for (int l = 0; l < NumNi; l++) {
                         niño.llenarDatosCheckin();
                     }
-
+                    
+                    //Pregunta si quiere eliminar usuarios
+                    String delUser = JOptionPane.showInputDialog("Desea eliminar algun usuario");                   
+                    
+                    if(delUser.equals("Si") || delUser.equals("si")){
+                        for(int i=0;i<4;i++){
+                            String queUSer = JOptionPane.showInputDialog("1. Adulto \n2. Niño \n3. Salir");
+                            int queUser = Integer.parseInt(queUSer);
+                            switch(queUser){
+                                case 1:
+                                    reservas.mosAdul();
+                                    System.out.println("Ingresa el numero del adulto a eliminar");
+                                    int queAdu = in2.nextInt();//Variable que lee el indice del usuario a eliminar
+                                    //Elimina el usuario en las reservas y en el check in
+                                    reservas.eliminarAdulto(queAdu);
+                                    adulto.eliminarUser(queAdu);
+                                    System.out.println("Usuario " + queAdu + " ha sido eliminado");
+                                    break;
+                                case 2:
+                                    reservas.mosNi();
+                                    System.out.println("Ingresa el numero del niño a eliminar");
+                                    int queNi = in2.nextInt();//Variable que lee el indice del usuario a eliminar
+                                    //Elimina el usuario en las reservas y en el check in
+                                    reservas.eliminarNiño(queNi);
+                                    niño.eliminarUser(queNi);
+                                    System.out.println("Usuario " + queNi + " ha sido eliminado");
+                                    break;
+                                case 3:
+                                    i=4;
+                                    break;
+                                default:
+                                    System.out.println("Ingrese una opcion valida");
+                                    i--;
+                            }
+                        }
+                    }
                     break;
                 case 3:
                     //Muestra las habitaciones
-                    HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250000);
+                    HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250.001);
                     habmatrimonial.mostrarHabitacion();
 
-                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 4, "3", 350000);
+                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 4, "3", 350.001);
                     habfamiliar.mostrarHabitacion();
 
-                    HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400000);
+                    HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400.001);
                     habsuite.mostrarHabitacion();
                     break;
                 case 4:
@@ -156,7 +203,7 @@ public class Hotel {
                     break;
                 case 5:
                     System.out.println("Salir");
-                    j = 6;
+                    j = 8;
                     break;
                 default:
                     System.out.println("Ingrese una opcion valida");

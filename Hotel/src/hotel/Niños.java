@@ -29,8 +29,9 @@ public class Niños extends Persona{
         }
     }
 
-    public ArrayList<Niños> getCheckinNiños() {
-        return checkinNiños;
+    @Override
+    public void eliminarUser(int i){
+        checkinNiños.remove(i);
     }
     
 }

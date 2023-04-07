@@ -5,9 +5,9 @@ public abstract class Habitaciones {
     protected int numeroCamasIndividuales;
     protected int cantidadHabitaciones;
     protected String tamañoBaño;
-    protected int valor;
+    protected double valor;
 
-    public Habitaciones(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, int valor) {
+    public Habitaciones(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
         this.numeroCamasDobles = numeroCamasDobles;
         this.numeroCamasIndividuales = numeroCamasIndividuales;
         this.cantidadHabitaciones = cantidadHabitaciones;
@@ -34,7 +34,7 @@ public abstract class Habitaciones {
         return tamañoBaño;
     }
 
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
     

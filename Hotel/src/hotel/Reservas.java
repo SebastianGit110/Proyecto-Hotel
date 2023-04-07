@@ -40,6 +40,32 @@ public class Reservas{
         reservaNiño.add(new Reservas("1"));
     }
     
+    //Metodos para mostrar el indice de cada persona para eliminar
+    public void mosAdul(){
+        int j = 0;
+        for(Reservas i : reservaAdulto){
+            System.out.println(j + " " + i.getNombres());
+            j++;
+        }
+    }
+    
+    public void mosNi(){
+        int j = 0;
+        for(Reservas i : reservaNiño){            
+            System.out.println(j + " " + i.getNombres());
+            j++;
+        }
+    }
+    
+    //Metodos para eliminar usuarios
+    public void eliminarAdulto(int i){
+        reservaAdulto.remove(i);
+    }
+    
+    public void eliminarNiño(int i){
+        reservaNiño.remove(i);
+    }
+    
     //Metodos para mostrar los datos de cada usuario
     public void mostrarReservaAdulto(){
         for(Reservas i : reservaAdulto){

@@ -29,5 +29,10 @@ public class Adultos extends Persona{
             System.out.println("Identificacion " + i.getId());
         }
     }
+    
+    @Override
+    public void eliminarUser(int i){
+        checkinAdulto.remove(i);
+    }
 }
 
