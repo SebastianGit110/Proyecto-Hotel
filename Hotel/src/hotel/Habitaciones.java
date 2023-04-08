@@ -6,6 +6,10 @@ public abstract class Habitaciones {
     protected int cantidadHabitaciones;
     protected String tamañoBaño;
     protected double valor;
+    
+    public Habitaciones(){
+        
+    }
 
     public Habitaciones(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
         this.numeroCamasDobles = numeroCamasDobles;
@@ -16,7 +20,7 @@ public abstract class Habitaciones {
     }
     
     abstract void mostrarHabitacion();
-    abstract void mostrarServicios();
+    abstract void elegirServicios();
 
     public int getNumeroCamasDobles() {
         return numeroCamasDobles;

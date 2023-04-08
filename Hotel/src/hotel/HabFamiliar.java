@@ -4,10 +4,15 @@ import javax.swing.JOptionPane;
 
 public class HabFamiliar extends Habitaciones{
 
-    //Variables booleanas para contar servicios
+    //Variables para contar servicios
     public boolean salaJuegos = false, cunas = false, piscina = false;
-    public boolean guarderia = false, audiovisual = false, miniClub = false, lavanderia = false;
-    public int roomService = 0;
+    public boolean guarderia = false, cine = false, miniClub = false;
+    public int roomService = 0, lavanderia = 0, elecSer = 0;
+    
+    //Constructores
+    public HabFamiliar(){
+        
+    }
     
     public HabFamiliar(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
         super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
@@ -26,7 +31,45 @@ public class HabFamiliar extends Habitaciones{
     }
     
     @Override
-    public void mostrarServicios(){
+    public void elegirServicios(){
+        for(int i=0;i<11;i++){
+            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room service \n2. Sala de juegos \n3. Cunas \n4. Piscina "
+                + "\n5. Guarderia \n6. Cine \n7. Mini club \n8. Lavanderia \n9. Volver");
+            elecSer = Integer.parseInt(ElecSer);
+            switch(elecSer){
+            case 1:
+                roomService += 1;
+                break;
+            case 2:
+                salaJuegos = true;
+                break;
+            case 3:
+                cunas = true;
+                break;
+            case 4:
+                piscina = true;
+                break;
+            case 5:
+                guarderia = true;
+                break;
+            case 6:
+                cine = true;
+                break;
+            case 7:
+                miniClub = true;
+                break;
+            case 8:
+                lavanderia += 1;
+                break;
+            case 9:
+                //System.out.println("No seleccionaste ningun servicio");
+                i=11;
+                break;
+            default:
+                System.out.println("Opcion incorrecta");
+                i--;
+            }
+        }
         
     }
     

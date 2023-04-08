@@ -17,7 +17,11 @@ public class Hotel {
         Adultos adulto = new Adultos();
         Niños niño = new Niños();
         Reservas reservas = new Reservas();
-
+        
+        HabMatrimonial habMat = new HabMatrimonial();
+        HabFamiliar habFam = new HabFamiliar();
+        HabSuite habSui = new HabSuite();
+        
         //Keys de los hashtable
         int ConAdu = 0, ConNi = 0;
 
@@ -125,7 +129,8 @@ public class Hotel {
                     //Dias para reservar
                     String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
                     canDias = Integer.parseInt(CanDias);
-
+                    String DiaEnt = JOptionPane.showInputDialog("Fecha de llegada ");
+                    String DiaSal = JOptionPane.showInputDialog("Fecha de salida ");
                     break;
                 case 2:
                     if (reserva == false) {
@@ -170,7 +175,7 @@ public class Hotel {
                                     
                                     break;
                                 case 2:
-                                    System.out.println("Ingresa el numero del niño a eliminar");
+                                    System.out.println("Ingresa el nombre del niño a eliminar");
                                     String queNi = in2.nextLine(); //Variable que lee el nombre del usuario a eliminar
                                     //Elimina el usuario en las reservas y en el check in
                                     try{
@@ -194,7 +199,16 @@ public class Hotel {
                     }
                     
                     //Pedir servicios
-                    
+                    //Llama al metodo que elige los servicios con la referencia del objeto declarada anteriormente
+                    if(ConMat>0){
+                        habMat.elegirServicios();
+                    }
+                    if(ConFam>0){
+                        habFam.elegirServicios();
+                    }
+                    if(ConSui>0){
+                        habSui.elegirServicios();
+                    }
                     
                     break;
                 case 3:
