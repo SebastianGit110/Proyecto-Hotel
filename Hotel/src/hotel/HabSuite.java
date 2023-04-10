@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 public class HabSuite extends Habitaciones{
 
     //Variables para contar servicios
-    public boolean cafeteria = false, electrodomesticos = false, miniBar = false, jacuzzi = false;
-    public boolean aireAcon = false, wiFi = false, cajaFuerte = false;
-    public int roomService = 0, productosHigiene = 0, elecSer = 0;
+    public int cafeteria = 0, electrodomesticos = 0, miniBar = 0, jacuzzi = 0;
+    public int aireAcon = 0, wiFi = 0, cajaFuerte = 0;
+    public int roomService = 0, productosHigiene = 0, elecSer = 0, total = 0;
     
     //Constructores
     public HabSuite(){
@@ -34,33 +34,34 @@ public class HabSuite extends Habitaciones{
     @Override
     public void elegirServicios(){
         for(int i=0;i<12;i++){
-            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room Service \n2. Cafeteria \n3. Electrodomesticos \n4. Mini bar \n5. Jacuzzi "
-                + " \n6. Aire acondicionado \n7. WiFi \n8. Caja fuerte \n9. Productos higiene \n10. Volver");
+            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room Service = 50.000 \n2. Cafeteria = 25.000 \n3. Electrodomesticos = 30.000 "
+                    + "\n4. Mini bar = 80.000 \n5. Jacuzzi = 90.000 \n6. Aire acondicionado = 25.000 \n7. WiFi = 30.000 \n8. Caja fuerte = 15.000 "
+                    + "\n9. Productos higiene = 20.000 \n10. Volver");
             elecSer = Integer.parseInt(ElecSer);
             switch(elecSer){
                 case 1:
                     roomService += 1;
                     break;
                 case 2:
-                    cafeteria = true;
+                    cafeteria += 1;
                     break;
                 case 3:
-                    electrodomesticos = true;
+                    electrodomesticos += 1;
                     break;
                 case 4:
-                    miniBar = true;
+                    miniBar += 1;
                     break;
                 case 5:
-                    jacuzzi = true;
+                    jacuzzi += 1;
                     break;
                 case 6:
-                    aireAcon = true;
+                    aireAcon += 1;
                     break;
                 case 7:
-                    wiFi = true;
+                    wiFi += 1;
                     break;
                 case 8:
-                    cajaFuerte = true;
+                    cajaFuerte += 1;
                     break;
                 case 9:
                     productosHigiene += 1;
@@ -74,7 +75,22 @@ public class HabSuite extends Habitaciones{
                     i--;
             }
         }
+    }
+    
+    @Override
+    public int muestraServicios(){
+        roomService = roomService*50000;
+        cafeteria = cafeteria*25000;
+        electrodomesticos = electrodomesticos*30000;
+        miniBar = miniBar*80000;
+        jacuzzi = jacuzzi*90000;
+        aireAcon = aireAcon*25000;
+        wiFi = wiFi*30000;
+        cajaFuerte = cajaFuerte*15000;
+        productosHigiene = productosHigiene*20000;
+        System.out.println("Total");
         
+        return roomService+cafeteria+electrodomesticos+miniBar+jacuzzi+aireAcon+wiFi+cajaFuerte+productosHigiene;
     }
     
 }

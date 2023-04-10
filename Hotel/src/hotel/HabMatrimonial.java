@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class HabMatrimonial extends Habitaciones{
 
     //Variables para contar servicios
-    public boolean secador = false, jacuzzi = false, escritorio = false, tv = false, telefonos = false;
-    public int roomService = 0, zapatillas = 0, albornoces = 0, productosHigiene = 0, elecSer = 0;
+    public int secador = 0, jacuzzi = 0, escritorio = 0, tv = 0, telefonos = 0;
+    public int roomService = 0, zapatillas = 0, albornoces = 0, productosHigiene = 0, elecSer = 0, total = 0;
     
     //Constructores
     public HabMatrimonial(){
@@ -33,15 +33,16 @@ public class HabMatrimonial extends Habitaciones{
     @Override
     public void elegirServicios(){
         for(int i=0;i<12;i++){
-            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room service \n2. Secador \n3. Zapatillas \n4. Albornoces \n5. Jacuzzi "
-                + "\n6. Escritorio \n7. Television \n8. Telefonos \n9. Productos para higiene \n10. Volver");
+            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room service = 50.000 \n2. Secador = 20.000 \n3. Zapatillas = 15.000 "
+                    + "\n4. Albornoces = 35.000 \n5. Jacuzzi = 90.000 \n6. Escritorio = 30.000 \n7. Television = 40.000 \n8. Telefonos = 35.000 "
+                    + "\n9. Productos para higiene = 20.000 \n10. Volver");
             elecSer = Integer.parseInt(ElecSer);
             switch(elecSer){
                 case 1:
                     roomService += 1;
                     break;
                 case 2:
-                    secador = true;
+                    secador += 1;
                     break;
                 case 3:
                     zapatillas += 1;
@@ -50,16 +51,16 @@ public class HabMatrimonial extends Habitaciones{
                     albornoces += 1;
                     break;
                 case 5:
-                    jacuzzi = true;
+                    jacuzzi += 1;
                     break;
                 case 6:
-                    escritorio = true;
+                    escritorio += 1;
                     break;
                 case 7:
-                    tv = true;
+                    tv += 1;
                     break;
                 case 8:
-                    telefonos  = true;
+                    telefonos += 1;
                     break;
                 case 9:
                     productosHigiene += 1;
@@ -73,6 +74,22 @@ public class HabMatrimonial extends Habitaciones{
                     i--;
             }
         }
+    }
+    
+    @Override
+    public int muestraServicios(){
+        roomService = roomService*50000;
+        secador = secador*20000;
+        zapatillas = zapatillas*15000;
+        albornoces = albornoces*35000;
+        jacuzzi = jacuzzi*90000;
+        escritorio = escritorio*30000;
+        tv = tv*40000;
+        telefonos = telefonos*35000;
+        productosHigiene = productosHigiene*20000;
+        System.out.println("Total");
+        
+        return total = roomService+secador+zapatillas+albornoces+jacuzzi+escritorio+tv+telefonos+productosHigiene;
     }
     
 }

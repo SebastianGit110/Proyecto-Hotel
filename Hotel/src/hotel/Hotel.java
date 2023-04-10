@@ -200,14 +200,18 @@ public class Hotel {
                     
                     //Pedir servicios
                     //Llama al metodo que elige los servicios con la referencia del objeto declarada anteriormente
+                    System.out.println("De las habitaciones seleccionadas, elija alguno de los servicios");
                     if(ConMat>0){
                         habMat.elegirServicios();
+                        System.out.println(habMat.muestraServicios());
                     }
                     if(ConFam>0){
                         habFam.elegirServicios();
+                        System.out.println(habFam.muestraServicios());
                     }
                     if(ConSui>0){
                         habSui.elegirServicios();
+                        System.out.println(habSui.muestraServicios());
                     }
                     
                     break;
@@ -216,7 +220,7 @@ public class Hotel {
                     HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250.001);
                     habmatrimonial.mostrarHabitacion();
 
-                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 4, "3", 350.001);
+                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 2, "2", 350.001);
                     habfamiliar.mostrarHabitacion();
 
                     HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400.001);

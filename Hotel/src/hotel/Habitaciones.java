@@ -21,6 +21,7 @@ public abstract class Habitaciones {
     
     abstract void mostrarHabitacion();
     abstract void elegirServicios();
+    abstract int muestraServicios();
 
     public int getNumeroCamasDobles() {
         return numeroCamasDobles;

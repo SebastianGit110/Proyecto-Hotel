@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 public class HabFamiliar extends Habitaciones{
 
     //Variables para contar servicios
-    public boolean salaJuegos = false, cunas = false, piscina = false;
-    public boolean guarderia = false, cine = false, miniClub = false;
-    public int roomService = 0, lavanderia = 0, elecSer = 0;
+    public int salaJuegos = 0, cunas = 0, piscina = 0;
+    public int guarderia = 0, cine = 0, miniClub = 0;
+    public int roomService = 0, lavanderia = 0, elecSer = 0, total = 0;
     
     //Constructores
     public HabFamiliar(){
@@ -33,30 +33,30 @@ public class HabFamiliar extends Habitaciones{
     @Override
     public void elegirServicios(){
         for(int i=0;i<11;i++){
-            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room service \n2. Sala de juegos \n3. Cunas \n4. Piscina "
-                + "\n5. Guarderia \n6. Cine \n7. Mini club \n8. Lavanderia \n9. Volver");
+            String ElecSer = JOptionPane.showInputDialog("Eleccion de servicios \n1. Room service = 50.000 \n2. Sala de juegos = 25.000 \n3. Cunas = 30.000 "
+                    + "\n4. Piscina = 100.000 \n5. Guarderia = 20.000 \n6. Cine = 40.000 \n7. Mini club = 55.000 \n8. Lavanderia = 15.000 \n9. Volver");
             elecSer = Integer.parseInt(ElecSer);
             switch(elecSer){
             case 1:
                 roomService += 1;
                 break;
             case 2:
-                salaJuegos = true;
+                salaJuegos += 1;
                 break;
             case 3:
-                cunas = true;
+                cunas += 1;
                 break;
             case 4:
-                piscina = true;
+                piscina += 1;
                 break;
             case 5:
-                guarderia = true;
+                guarderia += 1;
                 break;
             case 6:
-                cine = true;
+                cine += 1;
                 break;
             case 7:
-                miniClub = true;
+                miniClub += 1;
                 break;
             case 8:
                 lavanderia += 1;
@@ -70,7 +70,21 @@ public class HabFamiliar extends Habitaciones{
                 i--;
             }
         }
+    }
+    
+    @Override
+    public int muestraServicios(){
+        roomService = roomService*50000;
+        salaJuegos = salaJuegos*25000;
+        cunas = cunas*30000;
+        piscina = piscina*100000;
+        guarderia = guarderia*20000;
+        cine = cine*40000;
+        miniClub = miniClub*55000;
+        lavanderia = lavanderia*15000;
+        System.out.println("Total");
         
+        return roomService+salaJuegos+cunas+piscina+guarderia+cine+miniClub+lavanderia;
     }
     
 }
