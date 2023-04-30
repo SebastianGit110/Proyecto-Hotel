@@ -24,10 +24,9 @@ public class Adultos extends Persona{
     }
 
     @Override
-    public void getDatosCheckin(){
-        for(Adultos i : checkinAdulto){
-            System.out.println("Identificacion " + i.getId());
-        }
+    public void getDatosCheckin(int j){
+        Adultos adulto = checkinAdulto.get(j);
+        System.out.println("Identificacion " + adulto.getId());
     }
     
     @Override

@@ -3,33 +3,36 @@ package hotel;
 import javax.swing.JOptionPane;
 
 public class HabMatrimonial extends Habitaciones{
-
+   
     //Variables para contar servicios
     public int secador = 0, jacuzzi = 0, escritorio = 0, tv = 0, telefonos = 0;
     public int roomService = 0, zapatillas = 0, albornoces = 0, productosHigiene = 0, elecSer = 0, total = 0;
-    
+   
+    //Array para guardar las habitaciones disponibles
+    public int canHab[] = new int [5];
+   
     //Constructores
     public HabMatrimonial(){
-        
+       
     }
-    
+   
     public HabMatrimonial(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
         super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
     }
-    
+   
     @Override
     public void mostrarHabitacion(){
         String Aux = "";
-        
+       
         Aux= "\nLa habitacion matrimonial cuenta con: \n" + getNumeroCamasDobles() + " camas dobles, "
-                + getCantidadHabitaciones() + " habitaciones y " + getTamañoBaño() + " banos.\nPor un valor de: " + getValor() + "\n"
+                + getCantidadHabitaciones() + " habitaciones y " + getTamañoBaño() + " banos.\nPor un valor por dia de: " + getValor() + "\n"
                 + " \nOfrece los siguientes servicios: \nRoom service \nSecador \nZapatillas \nAlbornoces \nJacuzzi \nEscritorio \nTelevision \nTelefonos"
                 + "\nProductos para higiene";
-        
+       
         JOptionPane.showMessageDialog(null, Aux,
                 "Datos de habitacion Matrimonial", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+   
     @Override
     public void elegirServicios(){
         for(int i=0;i<12;i++){
@@ -75,7 +78,7 @@ public class HabMatrimonial extends Habitaciones{
             }
         }
     }
-    
+   
     @Override
     public int muestraServicios(){
         roomService = roomService*50000;
@@ -87,9 +90,9 @@ public class HabMatrimonial extends Habitaciones{
         tv = tv*40000;
         telefonos = telefonos*35000;
         productosHigiene = productosHigiene*20000;
-        System.out.println("Total");
-        
+        //System.out.println("Total");
+       
         return total = roomService+secador+zapatillas+albornoces+jacuzzi+escritorio+tv+telefonos+productosHigiene;
     }
-    
+   
 }

@@ -23,10 +23,9 @@ public class Niños extends Persona{
     }
    
     @Override
-    public void getDatosCheckin(){
-        for(Niños i : checkinNiños){
-            System.out.println("Identificacion " + i.getId());
-        }
+    public void getDatosCheckin(int j){
+        Niños niño = checkinNiños.get(j);
+        System.out.println("Identificacion " + niño.getId());
     }
 
     @Override

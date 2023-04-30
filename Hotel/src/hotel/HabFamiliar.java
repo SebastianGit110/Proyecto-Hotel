@@ -8,28 +8,31 @@ public class HabFamiliar extends Habitaciones{
     public int salaJuegos = 0, cunas = 0, piscina = 0;
     public int guarderia = 0, cine = 0, miniClub = 0;
     public int roomService = 0, lavanderia = 0, elecSer = 0, total = 0;
-    
+   
+    //Array para guardar las habitaciones disponibles
+    public int canHab[] = new int [5];
+   
     //Constructores
     public HabFamiliar(){
-        
+       
     }
-    
+   
     public HabFamiliar(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
         super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
     }
-    
+   
     @Override
     public void mostrarHabitacion(){
         String Aux = "";
-        
+       
         Aux= "\nLa habitacion familiar cuenta con: \n" + getNumeroCamasDobles() + " camas dobles, "
-                + getCantidadHabitaciones() + " habitaciones y " + getTamañoBaño() + " banos.\nPor un valor de: " + getValor() + "\n"
+                + getCantidadHabitaciones() + " habitaciones y " + getTamañoBaño() + " banos.\nPor un valor por dia de: " + getValor() + "\n"
                 + "\nOfrece los siguientes servicios: \nRoom service \nSala de juegos \nCunas \nPiscina \nGuarderia \nCine \nMini club \nLavanderia";
-        
+       
         JOptionPane.showMessageDialog(null, Aux,
                 "Datos de habitacion Familiar", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+   
     @Override
     public void elegirServicios(){
         for(int i=0;i<11;i++){
@@ -71,7 +74,7 @@ public class HabFamiliar extends Habitaciones{
             }
         }
     }
-    
+   
     @Override
     public int muestraServicios(){
         roomService = roomService*50000;
@@ -82,9 +85,9 @@ public class HabFamiliar extends Habitaciones{
         cine = cine*40000;
         miniClub = miniClub*55000;
         lavanderia = lavanderia*15000;
-        System.out.println("Total");
-        
+        //System.out.println("Total");
+       
         return roomService+salaJuegos+cunas+piscina+guarderia+cine+miniClub+lavanderia;
     }
-    
+   
 }

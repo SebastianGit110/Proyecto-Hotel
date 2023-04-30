@@ -17,16 +17,21 @@ public class Hotel {
         Adultos adulto = new Adultos();
         Niños niño = new Niños();
         Reservas reservas = new Reservas();
-        
+        CheckOut checkOut = new CheckOut();
+       
         HabMatrimonial habMat = new HabMatrimonial();
         HabFamiliar habFam = new HabFamiliar();
         HabSuite habSui = new HabSuite();
-        
+       
         //Keys de los hashtable
         int ConAdu = 0, ConNi = 0;
 
         //Variable contadora de personas
         int NumClientes = 0, NumAdu = 0, NumNi = 0;
+        int tamañoAdu = 0, tamañoNi = 0;
+       
+        //Variable para compara con el nombre del huesped
+        String nomHues = "";
 
         //Variable que cuentan dias de estadia
         int canDias = 0;
@@ -34,8 +39,9 @@ public class Hotel {
         //Variables que cuentan cuantas habitaciones
         String TipoHab = "";
         int NumHab = 0, ConMat = 0, ConFam = 0, ConSui = 0;
+        int serMat = 0, serFam = 0, serSui = 0;
 
-        //Menu para elegir el servicio 
+        //Menu para elegir el servicio
         //Variables que verifican la opcion
         boolean reserva = false, checkin = false, checkout = false;
 
@@ -98,33 +104,34 @@ public class Hotel {
                         }
                     }
                     //
-                    
+                   
                     //Numero de habitaciones
                     for(int m=0;m<5;m++){
                         String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
                         NumHab = Integer.parseInt(numHab);
-                        
+                       
                         //Comprueba que el numero que ingrese sea >0
                         if(NumHab <= 0){
                             System.out.println("Tiene que elegir al menos una habitacion");
                             continue;
                         }
-                        
+                       
                         //Tipo de habitaciones
                         for (int i = 0; i < NumHab; i++) {
-                            TipoHab = JOptionPane.showInputDialog("Cual es la " + (i + 1) + " habitacion");
+                            TipoHab = JOptionPane.showInputDialog("Cual es la " + (i + 1) + " habitacion \nMatrimonial \nFamiliar \nSuite");
+                           
 
-                            if (TipoHab.equals("Matrimonial") || TipoHab.equals("matrimonial")) {
+                            if (TipoHab.toLowerCase().equals("matrimonial")) {
                                 ConMat++;
-                            } else if (TipoHab.equals("Familiar") || TipoHab.equals("familiar")) {
+                            } else if (TipoHab.toLowerCase().equals("familiar")) {
                                 ConFam++;
-                            } else if (TipoHab.equals("Suite") || TipoHab.equals("suite")) {
+                            } else if (TipoHab.toLowerCase().equals("suite")) {
                                 ConSui++;
                             }
                         }
                         break;
                     }
-                    
+                   
 
                     //Dias para reservar
                     String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
@@ -140,7 +147,25 @@ public class Hotel {
                     }
                     checkin = true;
                     System.out.println("Realizar check in");
-                    
+                   
+                    for(int i=0;i<1;i++){ //Solo se comprueba una vez el primer nombre
+                        System.out.println("Ingrese el nombre del primer huesped para confirmar check in");
+                        nomHues = in2.nextLine();
+
+                        if(reservas.primerNom().equals(nomHues)){
+                            System.out.println("Datos de usuarios ingresados");
+                            for(int k=0;k<NumAdu;k++){
+                                reservas.mostrarReservaAdulto(k);
+                            }
+                            for(int k=0;k<NumNi;k++){
+                                reservas.mostrarReservaNiño(k);
+                            }
+                        }
+                        else{
+                            i--;
+                        }
+                    }  
+                   
                     //Llena los datos del check in
                     for (int l = 0; l < NumAdu; l++) {
                         adulto.llenarDatosCheckin();
@@ -149,10 +174,10 @@ public class Hotel {
                     for (int l = 0; l < NumNi; l++) {
                         niño.llenarDatosCheckin();
                     }
-                    
+                   
                     //Pregunta si quiere eliminar usuarios
-                    String delUser = JOptionPane.showInputDialog("Desea eliminar algun usuario");                   
-                    
+                    String delUser = JOptionPane.showInputDialog("Desea eliminar algun usuario");                  
+                   
                     if(delUser.equals("Si") || delUser.equals("si")){
                         for(int i=0;i<6;i++){
                             reservas.mostrarDatos();
@@ -165,14 +190,14 @@ public class Hotel {
                                     //Elimina el usuario en las reservas y en el check in
                                     try{
                                         reservas.eliminarAdulto(queAdu);
-                                        
+                                       
                                         int indiceAdu = reservas.getIndiceAdu(); //Variable que almacena el indice del adulto en la clase reserva
                                         adulto.eliminarUser(indiceAdu); //Manda ese indice para eliminar el check in tambien
-                                        
+                                       
                                     }catch(Exception e){
                                         System.out.println("Ha ocurrido un error");
                                     }
-                                    
+                                   
                                     break;
                                 case 2:
                                     System.out.println("Ingresa el nombre del niño a eliminar");
@@ -180,10 +205,10 @@ public class Hotel {
                                     //Elimina el usuario en las reservas y en el check in
                                     try{
                                         reservas.eliminarNiño(queNi);
-                                        
+                                       
                                         int indiceNi = reservas.getIndiceNi(); //Variable que almacena el indice del niño en la clase reserva
                                         niño.eliminarUser(indiceNi); //Manda ese indice para eliminar el check in tambien
-                                        
+                                       
                                     }catch(Exception e){
                                         System.out.println("Ha ocurrido un error");
                                     }
@@ -197,33 +222,30 @@ public class Hotel {
                             }
                         }
                     }
-                    
+                   
                     //Pedir servicios
                     //Llama al metodo que elige los servicios con la referencia del objeto declarada anteriormente
                     System.out.println("De las habitaciones seleccionadas, elija alguno de los servicios");
                     if(ConMat>0){
-                        habMat.elegirServicios();
-                        System.out.println(habMat.muestraServicios());
+                        habMat.elegirServicios(); //Elige servicios
                     }
                     if(ConFam>0){
-                        habFam.elegirServicios();
-                        System.out.println(habFam.muestraServicios());
+                        habFam.elegirServicios(); //Elige servicios
                     }
                     if(ConSui>0){
-                        habSui.elegirServicios();
-                        System.out.println(habSui.muestraServicios());
+                        habSui.elegirServicios(); //Elige servicios
                     }
-                    
+                   
                     break;
                 case 3:
                     //Muestra las habitaciones
-                    HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 3, "2", 250.001);
+                    HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 2, "1", 250.001);
                     habmatrimonial.mostrarHabitacion();
 
-                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 2, "2", 350.001);
+                    HabFamiliar habfamiliar = new HabFamiliar(2, 2, 3, "3", 350.001);
                     habfamiliar.mostrarHabitacion();
 
-                    HabSuite habsuite = new HabSuite(2, 0, 3, "2", 400.001);
+                    HabSuite habsuite = new HabSuite(2, 0, 1, "1", 400.001);
                     habsuite.mostrarHabitacion();
                     break;
                 case 4:
@@ -234,6 +256,31 @@ public class Hotel {
                         j--;
                         continue;
                     }
+                    
+                    //Se les asigna valor total de servicios adicionales
+                    serMat = habMat.muestraServicios();
+                    serFam = habFam.muestraServicios();
+                    serSui = habSui.muestraServicios();
+                    
+                    checkOut.generarTotalHab(ConMat, ConFam, ConSui, canDias);
+                    checkOut.generarTotalSer(serMat, serFam, serSui);
+                    
+                    tamañoAdu = reservas.getTamañoAdu();
+                    tamañoNi = reservas.getTamañoNi();
+
+                    for(int i=0;i<tamañoAdu;i++){
+                        reservas.mostrarReservaAdulto(i);
+                        adulto.getDatosCheckin(i);
+                    }
+
+                    if(tamañoNi!=0){
+                        for(int i=0;i<tamañoNi;i++){
+                        reservas.mostrarReservaNiño(i);      
+                        niño.getDatosCheckin(i);
+                        }   
+                    }
+                    
+                    checkOut.mostrarFactura();
                     break;
                 case 5:
                     System.out.println("Salir");
@@ -242,14 +289,7 @@ public class Hotel {
                 default:
                     System.out.println("Ingrese una opcion valida");
             }
-        }   
-
-        //Muestra datos
-        reservas.mostrarReservaAdulto();
-        adulto.getDatosCheckin();
-        
-        reservas.mostrarReservaNiño();      
-        niño.getDatosCheckin();
+        }  
         
     }
 }

@@ -1,18 +1,18 @@
 package hotel;
 
 public abstract class Persona{
-    public String nombres;
-    public int edad;
-    public String celular;
+    protected String nombres;
+    protected int edad;
+    protected String celular;
     //public int fechaIngreso, fechaSalida;
-    public String id;   
-    public String direccion;
+    protected String id;   
+    protected String direccion;
 //    public int canMenores = 0;
 //    public int numeroHabitaciones;
 //    public String cualHabitacion;        
     
     abstract void llenarDatosCheckin();
-    abstract void getDatosCheckin();
+    abstract void getDatosCheckin(int j);
     abstract void eliminarUser(int i);
     
     //Getters
