@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Niños extends Persona{
-
+    
     ArrayList<Niños> checkinNiños = new ArrayList<>();
     
     //Constructor vacio

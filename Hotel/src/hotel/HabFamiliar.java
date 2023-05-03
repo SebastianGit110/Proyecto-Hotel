@@ -10,7 +10,7 @@ public class HabFamiliar extends Habitaciones{
     public int roomService = 0, lavanderia = 0, elecSer = 0, total = 0;
    
     //Array para guardar las habitaciones disponibles
-    public int canHab[] = new int [5];
+    public int canHab[] = {0, 0, 0, 0, 0};
    
     //Constructores
     public HabFamiliar(){
@@ -88,6 +88,18 @@ public class HabFamiliar extends Habitaciones{
         //System.out.println("Total");
        
         return roomService+salaJuegos+cunas+piscina+guarderia+cine+miniClub+lavanderia;
+    }
+    
+    public void llenarHab(int ConFam){
+        //canHab
+        for(int j=0;j<ConFam;j++){
+            canHab[j]=1;
+        }
+        
+        System.out.println();
+        for(int i=0;i<canHab.length;i++){
+            System.out.print(canHab[i] + " ");
+        }
     }
    
 }

@@ -35,6 +35,7 @@ public class Hotel {
 
         //Variable que cuentan dias de estadia
         int canDias = 0;
+        String DiaEnt = "", DiaSal = "";
 
         //Variables que cuentan cuantas habitaciones
         String TipoHab = "";
@@ -129,15 +130,19 @@ public class Hotel {
                                 ConSui++;
                             }
                         }
+                        
+                        habMat.llenarHab(ConMat);
+                        habFam.llenarHab(ConFam);
+                        habSui.llenarHab(ConSui);
+                        
                         break;
                     }
                    
-
                     //Dias para reservar
                     String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
                     canDias = Integer.parseInt(CanDias);
-                    String DiaEnt = JOptionPane.showInputDialog("Fecha de llegada ");
-                    String DiaSal = JOptionPane.showInputDialog("Fecha de salida ");
+                    DiaEnt = JOptionPane.showInputDialog("Fecha de llegada ");
+                    DiaSal = JOptionPane.showInputDialog("Fecha de salida ");
                     break;
                 case 2:
                     if (reserva == false) {
@@ -251,7 +256,7 @@ public class Hotel {
                 case 4:
                     checkout = true;
                     System.out.println("Realizar check out");
-                    if (reserva == false) {
+                    if (reserva == false || checkin == false) {
                         System.out.println("Primero tienes que realizar la reserva");
                         j--;
                         continue;
@@ -262,8 +267,8 @@ public class Hotel {
                     serFam = habFam.muestraServicios();
                     serSui = habSui.muestraServicios();
                     
-                    checkOut.generarTotalHab(ConMat, ConFam, ConSui, canDias);
-                    checkOut.generarTotalSer(serMat, serFam, serSui);
+                    checkOut.generarTotal(ConMat, ConFam, ConSui, canDias);
+                    checkOut.generarTotal(serMat, serFam, serSui);
                     
                     tamañoAdu = reservas.getTamañoAdu();
                     tamañoNi = reservas.getTamañoNi();
@@ -280,7 +285,8 @@ public class Hotel {
                         }   
                     }
                     
-                    checkOut.mostrarFactura();
+                    checkOut.mostrarFactura(DiaEnt, DiaSal);
+                    checkOut.metodoDePago();
                     break;
                 case 5:
                     System.out.println("Salir");

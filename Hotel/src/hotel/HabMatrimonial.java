@@ -9,7 +9,7 @@ public class HabMatrimonial extends Habitaciones{
     public int roomService = 0, zapatillas = 0, albornoces = 0, productosHigiene = 0, elecSer = 0, total = 0;
    
     //Array para guardar las habitaciones disponibles
-    public int canHab[] = new int [5];
+    public int canHab[] = {0, 0, 0, 0, 0};
    
     //Constructores
     public HabMatrimonial(){
@@ -93,6 +93,19 @@ public class HabMatrimonial extends Habitaciones{
         //System.out.println("Total");
        
         return total = roomService+secador+zapatillas+albornoces+jacuzzi+escritorio+tv+telefonos+productosHigiene;
+    }
+    
+    @Override
+    public void llenarHab(int ConMat){
+        //canHab
+        for(int j=0;j<ConMat;j++){
+            canHab[j]=1;
+        }
+        
+        System.out.println();
+        for(int i=0;i<canHab.length;i++){
+            System.out.print(canHab[i] + " ");
+        }
     }
    
 }

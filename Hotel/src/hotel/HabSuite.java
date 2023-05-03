@@ -10,7 +10,7 @@ public class HabSuite extends Habitaciones{
     public int roomService = 0, productosHigiene = 0, elecSer = 0, total = 0;
    
     //Array para guardar las habitaciones disponibles
-    public int canHab[] = new int [5];
+    public int canHab[] = {0, 0, 0, 0, 0};
    
     //Constructores
     public HabSuite(){
@@ -94,6 +94,18 @@ public class HabSuite extends Habitaciones{
         //System.out.println("Total");
        
         return roomService+cafeteria+electrodomesticos+miniBar+jacuzzi+aireAcon+wiFi+cajaFuerte+productosHigiene;
+    }
+    
+    public void llenarHab(int ConSui){
+        //canHab
+        for(int j=0;j<ConSui;j++){
+            canHab[j]=1;
+        }
+        
+        System.out.println();
+        for(int i=0;i<canHab.length;i++){
+            System.out.print(canHab[i] + " ");
+        }
     }
    
 }

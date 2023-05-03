@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Reservas{
     public String nombres;
     public int edad;
-    public String celular;
+    public String celular, Aux = "";
    
     //Variable para guardar el nombre de la primera posicion
     public String primerNom = "";
