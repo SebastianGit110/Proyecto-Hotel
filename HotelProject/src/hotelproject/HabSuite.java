@@ -5,9 +5,8 @@ import javax.swing.JOptionPane;
 public class HabSuite extends Habitaciones<Integer,Integer,String,Double>{
 
     //Variables para contar servicios
-    public int cafeteria = 0, electrodomesticos = 0, miniBar = 0, jacuzzi = 0;
+    public int cafeteria = 0, electrodomesticos = 0, miniBar = 0;
     public int aireAcon = 0, wiFi = 0, cajaFuerte = 0;
-    public int roomService = 0, productosHigiene = 0, elecSer = 0, total = 0;
    
     //Constructores
     public HabSuite(){

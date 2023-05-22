@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class HabMatrimonial extends Habitaciones<Integer,Integer,String,Double>{
    
     //Variables para contar servicios
-    public int secador = 0, jacuzzi = 0, escritorio = 0, tv = 0, telefonos = 0;
-    public int roomService = 0, zapatillas = 0, albornoces = 0, productosHigiene = 0, elecSer = 0, total = 0;
+    public int secador = 0, escritorio = 0, tv = 0, telefonos = 0;
+    public int zapatillas = 0, albornoces = 0;
    
     //Constructores
     public HabMatrimonial(){

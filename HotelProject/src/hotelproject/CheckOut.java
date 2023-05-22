@@ -11,13 +11,13 @@ public class CheckOut implements CheckoutIn{
     @Override
     public void generarTotal(int i, int j, int k, int h){
         if(i!=0){
-            totalMat=costoMat*i;
+            totalMat=COSTOMAT*i;
         }
         if(j!=0){
-            totalFam=costoFam*j;
+            totalFam=COSTOFAM*j;
         }
         if(k!=0){
-            totalSui=costoSui*k;
+            totalSui=COSTOSUI*k;
         }
         totalHab=totalMat+totalFam+totalSui;
         totalHab*=h;

@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 public class ReservasAdultos extends Reservas{
     
     //ArrayList para adultos
-    public ArrayList<Reservas> reservaAdulto = new ArrayList<>();
+    public ArrayList<ReservasAdultos> reservaAdulto = new ArrayList<>();
     public int indiceAdu = -1; //Se inicializa con -1 para saber si el objeto no existe
-    protected String primerNom = "", Aux = ""; //Variable para guardar el nombre de la primera posicion
+    public String primerNom = ""; //Variable para guardar el nombre de la primera posicion
     
     //Constructor vacio
     public ReservasAdultos(){
@@ -74,7 +74,7 @@ public class ReservasAdultos extends Reservas{
         return reservaAdulto.size();
     }
     
-    protected int getIndiceAdu(){
+    public int getIndiceAdu(){
         return indiceAdu;
     }
 }

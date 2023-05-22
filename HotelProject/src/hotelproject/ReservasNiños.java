@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class ReservasNiños extends Reservas{
     
     //ArrayList para niños
-    public ArrayList<Reservas> reservaNiño = new ArrayList<>();
+    public ArrayList<ReservasNiños> reservaNiño = new ArrayList<>();
     public int indiceNi = -1; //Se inicializa con -1 para saber si el objeto no existe
     
     //Constructor vacio

@@ -7,7 +7,7 @@ public class HabFamiliar extends Habitaciones<Integer,Integer,String,Double>{
     //Variables para contar servicios
     public int salaJuegos = 0, cunas = 0, piscina = 0;
     public int guarderia = 0, cine = 0, miniClub = 0;
-    public int roomService = 0, lavanderia = 0, elecSer = 0, total = 0;
+    public int lavanderia = 0;
    
     //Constructores
     public HabFamiliar(){

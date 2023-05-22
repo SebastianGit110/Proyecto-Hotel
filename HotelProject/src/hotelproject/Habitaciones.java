@@ -6,7 +6,9 @@ public abstract class Habitaciones<I,L,S,D> {
     protected String tamañoBaño;
     protected double valor;
     protected int canHab[] = {0, 0, 0, 0, 0};
-   
+    //Servicios adicionales
+    protected int roomService = 0, jacuzzi = 0, productosHigiene = 0, elecSer = 0, total = 0;
+    
     protected Habitaciones(){
     }
 

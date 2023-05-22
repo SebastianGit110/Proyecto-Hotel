@@ -1,9 +1,9 @@
 package hotelproject;
 
 public interface CheckoutIn {
-    final int costoMat=250000;
-    final int costoFam=350000;
-    final int costoSui=400000;
+    final int COSTOMAT=250000;
+    final int COSTOFAM=350000;
+    final int COSTOSUI=400000;
     
     //Metodo que muestran total por habitaciones
     abstract void generarTotal(int i, int j, int k, int h);
