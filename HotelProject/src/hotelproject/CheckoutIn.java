@@ -11,6 +11,6 @@ public interface CheckoutIn {
     //Metodo que muestra total por servicios adicionales
     abstract void generarTotal(int i, int j, int k);
     
-    abstract void mostrarFactura(String i, String j);
-    abstract void metodoDePago();
+    abstract String mostrarFactura(String i, String j, String l);
+    abstract void metodoDePago(String l);
 }

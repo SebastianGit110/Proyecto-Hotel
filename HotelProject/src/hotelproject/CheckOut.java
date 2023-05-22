@@ -13,11 +13,9 @@ public class CheckOut implements CheckoutIn{
         if(i!=0){
             totalMat=costoMat*i;
         }
-        
         if(j!=0){
             totalFam=costoFam*j;
         }
-        
         if(k!=0){
             totalSui=costoSui*k;
         }
@@ -32,21 +30,23 @@ public class CheckOut implements CheckoutIn{
     }
     
     @Override
-    public void mostrarFactura(String DiaEnt, String DiaSal){
-        String Aux = "Fecha de entrada " +  DiaEnt + "\nFecha de salida " + DiaSal
-                + "\nEl costo total de las habitaciones son: " + totalHab + " pesos"
-                + "\nEl total por los servicios adicionales son: " + totalSer + " pesos"
-                + "\nPor un total de: " + (totalHab+totalSer) + " pesos";
+    public String mostrarFactura(String DiaEnt, String DiaSal, String primerNombre){
+        String Aux = "Factura reserva de: " + primerNombre 
+                + "\r\nFecha de entrada huespedes: " +  DiaEnt + "\r\nFecha de salida huespedes: " + DiaSal
+                + "\r\nEl costo total de las habitaciones son: $" + totalHab + " pesos"
+                + "\r\nEl total por los servicios adicionales son: $" + totalSer + " pesos"
+                + "\r\nPor un total de: $" + (totalHab+totalSer) + " pesos";
         JOptionPane.showMessageDialog(null, Aux,
                 "Factura de servicios", JOptionPane.INFORMATION_MESSAGE);
+        return Aux;
     }
     
     @Override
-    public void metodoDePago(){
+    public void metodoDePago(String primerNombre){
         String metodoPago = JOptionPane.showInputDialog("Quiere pagar en efectivo o tarjeta");
         metodoPago.toLowerCase();
         if(metodoPago.equals("efectivo")){
-            System.out.println("Su pago ha sido aceptado ");
+            System.out.println("El pago en efectivo realizado por: " + primerNombre + " ha sido efectuado");
         } else if(metodoPago.equals("tarjeta")){
             System.out.println("A cuantas cuotas");
             int cuotas = in.nextInt();

@@ -2,23 +2,19 @@ package hotelproject;
 
 import javax.swing.JOptionPane;
 
-public class HabFamiliar extends Habitaciones{
+public class HabFamiliar extends Habitaciones<Integer,Integer,String,Double>{
 
     //Variables para contar servicios
     public int salaJuegos = 0, cunas = 0, piscina = 0;
     public int guarderia = 0, cine = 0, miniClub = 0;
     public int roomService = 0, lavanderia = 0, elecSer = 0, total = 0;
    
-    //Array para guardar las habitaciones disponibles
-    public int canHab[] = {0, 0, 0, 0, 0};
-   
     //Constructores
     public HabFamiliar(){
-       
     }
    
-    public HabFamiliar(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
-        super(numeroCamasDobles, numeroCamasIndividuales, cantidadHabitaciones, tamañoBaño, valor);
+    public HabFamiliar(int numeroCamasDobles, int cantidadHabitaciones, String tamañoBaño, double valor) {
+        super(numeroCamasDobles, cantidadHabitaciones, tamañoBaño, valor);
     }
    
     @Override

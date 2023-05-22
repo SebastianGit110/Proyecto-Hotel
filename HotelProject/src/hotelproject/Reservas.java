@@ -55,12 +55,12 @@ public class Reservas{
     //Metodos para mostrar los datos de cada usuario
     public String mostrarReservaAdulto(int j){
         Reservas adulto = reservaAdulto.get(j);
-        return "Nombre " + adulto.getNombres() + " " + "\nEdad " + adulto.getEdad() + "\r";
+        return "\rNombre: " + adulto.getNombres() + " " + "\r\nEdad: " + adulto.getEdad() + "\r";
     }
    
     public String mostrarReservaNiño(int j){
         Reservas niño = reservaNiño.get(j);
-        return "Nombre " + niño.getNombres() + " " + "\nEdad " + niño.getEdad() + "\r";
+        return "\rNombre: " + niño.getNombres() + " " + "\r\nEdad: " + niño.getEdad() + "\r";
     }
    
     public void mostrarDatos(){

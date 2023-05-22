@@ -1,20 +1,17 @@
 package hotelproject;
 
-public abstract class Habitaciones {
+public abstract class Habitaciones<I,L,S,D> {
     protected int numeroCamasDobles;
-    protected int numeroCamasIndividuales;
     protected int cantidadHabitaciones;
     protected String tamañoBaño;
     protected double valor;
-    protected int canHabi[];
+    protected int canHab[] = {0, 0, 0, 0, 0};
    
     public Habitaciones(){
-       
     }
 
-    public Habitaciones(int numeroCamasDobles, int numeroCamasIndividuales, int cantidadHabitaciones, String tamañoBaño, double valor) {
+    public Habitaciones(int numeroCamasDobles, int cantidadHabitaciones, String tamañoBaño, double valor) {
         this.numeroCamasDobles = numeroCamasDobles;
-        this.numeroCamasIndividuales = numeroCamasIndividuales;
         this.cantidadHabitaciones = cantidadHabitaciones;
         this.tamañoBaño = tamañoBaño;
         this.valor = valor;
@@ -27,10 +24,6 @@ public abstract class Habitaciones {
 
     public int getNumeroCamasDobles() {
         return numeroCamasDobles;
-    }
-
-    public int getNumeroCamasIndividuales() {
-        return numeroCamasIndividuales;
     }
 
     public int getCantidadHabitaciones() {

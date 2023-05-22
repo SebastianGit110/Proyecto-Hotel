@@ -3,7 +3,7 @@ package hotelproject;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Niños extends Persona{
+public class Niños extends Persona implements PersonaInt{
     
     ArrayList<Niños> checkinNiños = new ArrayList<>();
     
@@ -23,9 +23,9 @@ public class Niños extends Persona{
     }
    
     @Override
-    public void getDatosCheckin(int j){
+    public String getDatosCheckin(int j){
         Niños niño = checkinNiños.get(j);
-        System.out.println("Identificacion " + niño.getId());
+        return "Identificacion " + niño.getId();
     }
 
     @Override

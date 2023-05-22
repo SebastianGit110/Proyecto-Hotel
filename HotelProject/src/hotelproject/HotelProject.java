@@ -20,19 +20,16 @@ public class HotelProject {
         Niños niño = new Niños();
         Reservas reservas = new Reservas();
         CheckOut checkOut = new CheckOut();
-       
+        
         HabMatrimonial habMat = new HabMatrimonial();
         HabFamiliar habFam = new HabFamiliar();
         HabSuite habSui = new HabSuite();
        
-        //Keys de los hashtable
-        int ConAdu = 0, ConNi = 0;
-
         //Variable contadora de personas
         int NumClientes = 0, NumAdu = 0, NumNi = 0;
         int tamañoAdu = 0, tamañoNi = 0;
        
-        //Variable para compara con el nombre del huesped
+        //Variable para comparar con el nombre del huesped
         String nomHues = "";
 
         //Variable que cuentan dias de estadia
@@ -58,14 +55,16 @@ public class HotelProject {
                 System.out.println("El directorio ya existe");
             }
             
-            //Creacion del Archivo
+            //Creacion de los Archivos
             
             File crearArchivo = new File("c:\\ProyectoHotel\\DatosHotel.txt");
-            if(crearArchivo.createNewFile()){
-                System.out.println("Se creo el archivo");
+            File crearArchivo2 = new File("c:\\ProyectoHotel\\FacturaHotel.txt");
+
+            if(crearArchivo.createNewFile() && crearArchivo2.createNewFile()){
+                System.out.println("Se crearon los archivos");
             }
             else{
-                System.out.println("El archivo ya existe");
+                System.out.println("Los archivos ya existen");
             }
         }
         catch(Exception e){
@@ -76,7 +75,8 @@ public class HotelProject {
         //de la logica del codigo
         
         try{
-            FileWriter escribir = new FileWriter("c:\\ProyectoHotel\\DatosHotel.txt", false);
+            FileWriter escribirDatos = new FileWriter("c:\\ProyectoHotel\\DatosHotel.txt", false);
+            FileWriter escribirFactura = new FileWriter("c:\\ProyectoHotel\\FacturaHotel.txt", false);
             System.out.println("Escribiendo...");
             //escribir.write("Inicia el archivo \r\n");
             for (int j = 0; j < 8; j++) {
@@ -90,7 +90,7 @@ public class HotelProject {
                         System.out.println("\nRealizar reserva");
                         System.out.println("Cuantas personas van a hospedarse");
                         NumClientes = in.nextInt();
-                        escribir.write("Numero de clientes "+NumClientes + "\r\n");
+                        escribirDatos.write("Numero de clientes: "+NumClientes + "\r\n \r\n");
                         
                         //Logica para clasificar cantidad de huespedes
                         for (int i = 0; i < 5; i++) {
@@ -100,7 +100,6 @@ public class HotelProject {
                             if (NumAdu > NumClientes) {
                                 System.out.println("Ha ingresado un numero mayor que el numero de clientes");
                                 i--;
-                                //continue;
                             } else {
                                 break;
                             }
@@ -120,8 +119,7 @@ public class HotelProject {
                                     NumNi = in.nextInt();
                                     if ((NumNi + NumAdu) != NumClientes) { //Verifica que la cantidad de niños y adultos sea igual a la cantidad de clientes
                                         System.out.println("No coinciden los datos con las personas que se van a hospedar");
-                                        l--;//
-                                        //continue;
+                                        l--;
                                     } else {
                                         break;
                                     }
@@ -200,6 +198,10 @@ public class HotelProject {
                                                 System.out.println("No tiene habitaciones Suite");
                                             }
                                             break;
+                                        default:
+                                            System.out.println("Ingrese una habitacion nuevamente");
+                                            i--;
+                                            break;
                                     }
                                 }else{
                                     i=6;
@@ -209,7 +211,18 @@ public class HotelProject {
                             habMat.llenarHab(ConMat);
                             habFam.llenarHab(ConFam);
                             habSui.llenarHab(ConSui);
-
+                            
+                            //Escribe la cantidad de habitaciones en el archivo .txt
+                            if(ConMat>0){
+                                escribirDatos.write(ConMat + " habitaciones matrimoniales\r\n");
+                            }
+                            if(ConFam>0){
+                                escribirDatos.write(ConFam + " habitaciones familiares\r\n");
+                            }
+                            if(ConSui>0){
+                                escribirDatos.write(ConSui + " habitaciones suite\r\n");
+                            }
+                            
                             break;
                         }
 
@@ -218,12 +231,15 @@ public class HotelProject {
                         canDias = Integer.parseInt(CanDias);
                         DiaEnt = JOptionPane.showInputDialog("Fecha de llegada ");
                         DiaSal = JOptionPane.showInputDialog("Fecha de salida ");
+                        escribirDatos.write("\r\nDias reservados: " + canDias + "\r\n \r\n" +
+                                "Fecha de entrada: " + DiaEnt + "\r\n" + 
+                                "Fecha de salida: " + DiaSal + "\r\n \r\n");
                         break;
                     
                     case 2:
                         //Pedir servicios
                         //Llama al metodo que elige los servicios con la referencia del objeto declarada anteriormente
-                        System.out.println("\nDe las habitaciones seleccionadas, elija alguno de los servicios\n");
+                        System.out.println("\nDe las habitaciones seleccionadas, elija alguno de los servicios");
                         if(ConMat>0){
                             habMat.elegirServicios(); //Elige servicios
                         }
@@ -242,7 +258,7 @@ public class HotelProject {
                             continue;
                         }
                         checkin = true;
-                        System.out.println("\n \nRealizar check in\n");
+                        System.out.println("\nRealizar check in\n");
                         
                         reservas.mostrarDatos(); //Muestra los nombres para ingresar al check in por el primer nombre
                         
@@ -254,7 +270,6 @@ public class HotelProject {
                                 System.out.println("Datos de usuarios ingresados:\n");
                                 for(int k=0;k<NumAdu;k++){
                                     System.out.println(reservas.mostrarReservaAdulto(k));
-                                    escribir.write(reservas.mostrarReservaAdulto(k) + "\r\n");
                                 }
                                 for(int k=0;k<NumNi;k++){
                                     System.out.println(reservas.mostrarReservaNiño(k));
@@ -291,7 +306,7 @@ public class HotelProject {
                                             reservas.eliminarAdulto(queAdu);
 
                                             int indiceAdu = reservas.getIndiceAdu(); //Variable que almacena el indice del adulto en la clase reserva
-                                            adulto.eliminarUser(indiceAdu); //Manda ese indice para eliminar el check in tambien
+                                            adulto.eliminarUser(indiceAdu); //Manda ese indice para eliminar en el check in tambien
 
                                         }catch(Exception e){
                                             System.out.println("Ha ocurrido un error");
@@ -324,13 +339,13 @@ public class HotelProject {
                         break;
                     case 4:
                         //Muestra las habitaciones
-                        HabMatrimonial habmatrimonial = new HabMatrimonial(1, 0, 2, "1", 250.001);
+                        HabMatrimonial habmatrimonial = new HabMatrimonial(1, 2, "1", 250.001);
                         habmatrimonial.mostrarHabitacion();
 
-                        HabFamiliar habfamiliar = new HabFamiliar(2, 2, 3, "3", 350.001);
+                        HabFamiliar habfamiliar = new HabFamiliar(2, 3, "3", 350.001);
                         habfamiliar.mostrarHabitacion();
 
-                        HabSuite habsuite = new HabSuite(2, 0, 1, "1", 400.001);
+                        HabSuite habsuite = new HabSuite(2, 2, "1", 400.001);
                         habsuite.mostrarHabitacion();
                         break;
                     case 5:
@@ -356,10 +371,15 @@ public class HotelProject {
                         tamañoAdu = reservas.getTamañoAdu();
                         tamañoNi = reservas.getTamañoNi();
                         
+                        escribirDatos.write("\r\nInformacion de los huespedes: \r\n");
+                        
                         //Muestra datos de los adultos en reserva y check in
                         for(int i=0;i<tamañoAdu;i++){
                             System.out.println(reservas.mostrarReservaAdulto(i));;
-                            adulto.getDatosCheckin(i);
+                            System.out.println(adulto.getDatosCheckin(i));;
+                            
+                            escribirDatos.write(reservas.mostrarReservaAdulto(i) + "\r\n" + 
+                                    adulto.getDatosCheckin(i) + "\r\n \r\n");
                             System.out.println(); //Salto de linea
                         }
 
@@ -367,15 +387,20 @@ public class HotelProject {
                         if(tamañoNi!=0){
                             for(int i=0;i<tamañoNi;i++){
                                 System.out.println(reservas.mostrarReservaNiño(i));;      
-                                niño.getDatosCheckin(i);
+                                System.out.println(niño.getDatosCheckin(i));;
+                                
+                                escribirDatos.write(reservas.mostrarReservaNiño(i) + "\r\n" + 
+                                        niño.getDatosCheckin(i) + "\r\n \r\n");
                                 System.out.println(); //Salto de linea
                             }   
                         }
                         
                         //Muestra la factura
-                        checkOut.mostrarFactura(DiaEnt, DiaSal);
+                        String primerNombre = reservas.primerNom(); //Asigna a la variable el primer nombre de la reserva
+                        System.out.println(checkOut.mostrarFactura(DiaEnt, DiaSal, primerNombre));
+                        escribirFactura.write(checkOut.mostrarFactura(DiaEnt, DiaSal, primerNombre));
                         //Pide el metodo de pago
-                        checkOut.metodoDePago();
+                        checkOut.metodoDePago(primerNombre);
                         break;
                     case 6:
                         System.out.println("Salir");
@@ -385,7 +410,8 @@ public class HotelProject {
                         System.out.println("Ingrese una opcion valida");
                 }
             }
-            escribir.close(); //Deja de escribir en el archivo
+            escribirDatos.close(); //Deja de escribir en el archivo
+            escribirFactura.close();
         }catch(Exception e){ //Excepcion al escribir en el archivo o durante el registro
             System.out.println("Ocurrio un error escribiendo");
         }    
