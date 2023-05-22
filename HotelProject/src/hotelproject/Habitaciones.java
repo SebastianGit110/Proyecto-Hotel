@@ -7,10 +7,10 @@ public abstract class Habitaciones<I,L,S,D> {
     protected double valor;
     protected int canHab[] = {0, 0, 0, 0, 0};
    
-    public Habitaciones(){
+    protected Habitaciones(){
     }
 
-    public Habitaciones(int numeroCamasDobles, int cantidadHabitaciones, String tamañoBaño, double valor) {
+    protected Habitaciones(int numeroCamasDobles, int cantidadHabitaciones, String tamañoBaño, double valor) {
         this.numeroCamasDobles = numeroCamasDobles;
         this.cantidadHabitaciones = cantidadHabitaciones;
         this.tamañoBaño = tamañoBaño;
@@ -22,19 +22,19 @@ public abstract class Habitaciones<I,L,S,D> {
     abstract int muestraServicios();
     abstract void llenarHab(int i);
 
-    public int getNumeroCamasDobles() {
+    protected int getNumeroCamasDobles() {
         return numeroCamasDobles;
     }
 
-    public int getCantidadHabitaciones() {
+    protected int getCantidadHabitaciones() {
         return cantidadHabitaciones;
     }
 
-    public String getTamañoBaño() {
+    protected String getTamañoBaño() {
         return tamañoBaño;
     }
 
-    public double getValor() {
+    protected double getValor() {
         return valor;
     }
 }

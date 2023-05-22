@@ -18,7 +18,9 @@ public class HotelProject {
         //Instacias de las clases con constructor vacio
         Adultos adulto = new Adultos();
         Niños niño = new Niños();
-        Reservas reservas = new Reservas();
+        ReservasAdultos reservasAdultos = new ReservasAdultos();
+        ReservasNiños reservasNiños = new ReservasNiños();
+                
         CheckOut checkOut = new CheckOut();
         
         HabMatrimonial habMat = new HabMatrimonial();
@@ -107,7 +109,7 @@ public class HotelProject {
 
                         //Llena adultos llamando al metodo correspondiente de la clase
                         for (int i = 0; i < NumAdu; i++) {
-                            reservas.llenarReservaAdulto();
+                            reservasAdultos.llenarReserva();
                         }
                         for (int i = 0; i < 2; i++) {
                             if (NumAdu == NumClientes) {
@@ -130,7 +132,7 @@ public class HotelProject {
                                 } else {
                                     //Llena niños llamando al hashtable de la clase
                                     for (int l = 0; l < NumNi; l++) {
-                                        reservas.llenarReservaNiño();
+                                        reservasNiños.llenarReserva();
                                     }
                                     break;
                                 }
@@ -260,19 +262,20 @@ public class HotelProject {
                         checkin = true;
                         System.out.println("\nRealizar check in\n");
                         
-                        reservas.mostrarDatos(); //Muestra los nombres para ingresar al check in por el primer nombre
+                        reservasAdultos.mostrarDatos();
+                        reservasNiños.mostrarDatos(); //Muestra los nombres para ingresar al check in por el primer nombre
                         
                         for(int i=0;i<1;i++){ //Solo se comprueba una vez el primer nombre
                             System.out.println("\nIngrese el nombre del primer huesped para confirmar check in");
                             nomHues = in2.nextLine();
 
-                            if(reservas.primerNom().equals(nomHues)){
+                            if(reservasAdultos.primerNom().equals(nomHues)){
                                 System.out.println("Datos de usuarios ingresados:\n");
                                 for(int k=0;k<NumAdu;k++){
-                                    System.out.println(reservas.mostrarReservaAdulto(k));
+                                    System.out.println(reservasAdultos.mostrarReserva(k));
                                 }
                                 for(int k=0;k<NumNi;k++){
-                                    System.out.println(reservas.mostrarReservaNiño(k));
+                                    System.out.println(reservasNiños.mostrarReserva(k));
                                 }
                             }
                             else{
@@ -294,7 +297,9 @@ public class HotelProject {
 
                         if(delUser.equals("Si") || delUser.equals("si")){
                             for(int i=0;i<6;i++){
-                                reservas.mostrarDatos();
+                                reservasAdultos.mostrarDatos();
+                                reservasNiños.mostrarDatos();
+                                
                                 String queUSer = JOptionPane.showInputDialog("1. Adulto \n2. Niño \n3. Volver");
                                 int queUser = Integer.parseInt(queUSer);
                                 switch(queUser){
@@ -303,9 +308,9 @@ public class HotelProject {
                                         String queAdu = in2.nextLine(); //Variable que lee el nombre del usuario a eliminar
                                         //Elimina el usuario en las reservas y en el check in
                                         try{
-                                            reservas.eliminarAdulto(queAdu);
+                                            reservasAdultos.eliminarReserva(queAdu);
 
-                                            int indiceAdu = reservas.getIndiceAdu(); //Variable que almacena el indice del adulto en la clase reserva
+                                            int indiceAdu = reservasAdultos.getIndiceAdu(); //Variable que almacena el indice del adulto en la clase reserva
                                             adulto.eliminarUser(indiceAdu); //Manda ese indice para eliminar en el check in tambien
 
                                         }catch(Exception e){
@@ -318,9 +323,9 @@ public class HotelProject {
                                         String queNi = in2.nextLine(); //Variable que lee el nombre del usuario a eliminar
                                         //Elimina el usuario en las reservas y en el check in
                                         try{
-                                            reservas.eliminarNiño(queNi);
+                                            reservasNiños.eliminarReserva(queNi);
 
-                                            int indiceNi = reservas.getIndiceNi(); //Variable que almacena el indice del niño en la clase reserva
+                                            int indiceNi = reservasNiños.getIndiceNi(); //Variable que almacena el indice del niño en la clase reserva
                                             niño.eliminarUser(indiceNi); //Manda ese indice para eliminar el check in tambien
 
                                         }catch(Exception e){
@@ -368,17 +373,17 @@ public class HotelProject {
                         checkOut.generarTotal(serMat, serFam, serSui);
 
                         //Asigna el tamaño de los ArrayList
-                        tamañoAdu = reservas.getTamañoAdu();
-                        tamañoNi = reservas.getTamañoNi();
+                        tamañoAdu = reservasAdultos.getTamañoAdu();
+                        tamañoNi = reservasNiños.getTamañoNi();
                         
                         escribirDatos.write("\r\nInformacion de los huespedes: \r\n");
                         
                         //Muestra datos de los adultos en reserva y check in
                         for(int i=0;i<tamañoAdu;i++){
-                            System.out.println(reservas.mostrarReservaAdulto(i));;
+                            System.out.println(reservasAdultos.mostrarReserva(i));;
                             System.out.println(adulto.getDatosCheckin(i));;
                             
-                            escribirDatos.write(reservas.mostrarReservaAdulto(i) + "\r\n" + 
+                            escribirDatos.write(reservasAdultos.mostrarReserva(i) + "\r\n" + 
                                     adulto.getDatosCheckin(i) + "\r\n \r\n");
                             System.out.println(); //Salto de linea
                         }
@@ -386,17 +391,17 @@ public class HotelProject {
                         //Muestra datos de los niños en reserva y check in
                         if(tamañoNi!=0){
                             for(int i=0;i<tamañoNi;i++){
-                                System.out.println(reservas.mostrarReservaNiño(i));;      
+                                System.out.println(reservasNiños.mostrarReserva(i));;      
                                 System.out.println(niño.getDatosCheckin(i));;
                                 
-                                escribirDatos.write(reservas.mostrarReservaNiño(i) + "\r\n" + 
+                                escribirDatos.write(reservasNiños.mostrarReserva(i) + "\r\n" + 
                                         niño.getDatosCheckin(i) + "\r\n \r\n");
                                 System.out.println(); //Salto de linea
-                            }   
+                            }
                         }
                         
                         //Muestra la factura
-                        String primerNombre = reservas.primerNom(); //Asigna a la variable el primer nombre de la reserva
+                        String primerNombre = reservasAdultos.primerNom(); //Asigna a la variable el primer nombre de la reserva
                         System.out.println(checkOut.mostrarFactura(DiaEnt, DiaSal, primerNombre));
                         escribirFactura.write(checkOut.mostrarFactura(DiaEnt, DiaSal, primerNombre));
                         //Pide el metodo de pago

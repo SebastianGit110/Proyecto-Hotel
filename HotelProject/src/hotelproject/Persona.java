@@ -1,6 +1,6 @@
 package hotelproject;
 
-public abstract class Persona{
+public class Persona{
     protected String nombres;
     protected int edad;
     protected String celular;
@@ -8,23 +8,23 @@ public abstract class Persona{
     protected String direccion;     
     
     //Getters
-    public String getNombres() {
+    protected String getNombres() {
         return nombres;
     }
 
-    public int getEdad() {
+    protected int getEdad() {
         return edad;
     }
 
-    public String getId() {
+    protected String getId() {
         return id;
     }
 
-    public String getCelular() {
+    protected String getCelular() {
         return celular;
     }
 
-    public String getDireccion() {
+    protected String getDireccion() {
         return direccion;
     }
 }

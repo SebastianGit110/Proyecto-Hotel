@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class Niños extends Persona implements PersonaInt{
     
-    ArrayList<Niños> checkinNiños = new ArrayList<>();
+    public ArrayList<Niños> checkinNiños = new ArrayList<>();
     
     //Constructor vacio
     public Niños(){
