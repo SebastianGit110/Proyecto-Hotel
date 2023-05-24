@@ -1,6 +1,7 @@
 package hotelproject;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class ReservasAdultos extends Reservas{
@@ -9,6 +10,7 @@ public class ReservasAdultos extends Reservas{
     public ArrayList<ReservasAdultos> reservaAdulto = new ArrayList<>();
     public int indiceAdu = -1; //Se inicializa con -1 para saber si el objeto no existe
     public String primerNom = ""; //Variable para guardar el nombre de la primera posicion
+    ImageIcon icon = new ImageIcon("src/imagenes/usuarioAdul.png");
     
     //Constructor vacio
     public ReservasAdultos(){
@@ -17,10 +19,10 @@ public class ReservasAdultos extends Reservas{
     //Constructor reservas adultos
     public ReservasAdultos(int i){
         try{
-            this.nombres = JOptionPane.showInputDialog("Nombres del Adulto: ");
-            String Edad = JOptionPane.showInputDialog("Edad del Adulto: ");
+            this.nombres = (String) JOptionPane.showInputDialog(null, "Nombres del Adulto: ", "Adulto " , JOptionPane.QUESTION_MESSAGE, icon, null, "");
+            String Edad = (String) JOptionPane.showInputDialog(null, "Edad del Adulto: ", "Adulto ", JOptionPane.QUESTION_MESSAGE, icon, null, "");
             this.edad = Integer.parseInt(Edad);      
-            this.celular = JOptionPane.showInputDialog("Numero de contacto: ");
+            this.celular = (String) JOptionPane.showInputDialog(null, "Numero de contacto: ", "Adulto ", JOptionPane.QUESTION_MESSAGE, icon, null, "");
         }catch(Exception e){
             System.out.println("No ingreso el tipo de dato correcto ");
         }

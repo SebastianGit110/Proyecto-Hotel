@@ -1,5 +1,6 @@
 package hotelproject;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class HabSuite extends Habitaciones<Integer,Integer,String,Double>{
@@ -7,6 +8,7 @@ public class HabSuite extends Habitaciones<Integer,Integer,String,Double>{
     //Variables para contar servicios
     public int cafeteria = 0, electrodomesticos = 0, miniBar = 0;
     public int aireAcon = 0, wiFi = 0, cajaFuerte = 0;
+    ImageIcon icon = new ImageIcon("src/imagenes/suite.png");
    
     //Constructores
     public HabSuite(){
@@ -25,8 +27,7 @@ public class HabSuite extends Habitaciones<Integer,Integer,String,Double>{
                 + " \nOfrece los siguientes servicios: \nRoom Service \nCafeteria \nElectrodomesticos \nMini bar \nJacuzzi "
                 + " \nAire acondicionado \nWiFi \nCaja fuerte \nProductos higiene";
        
-        JOptionPane.showMessageDialog(null, Aux,
-                "Datos de habitacion Suite", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, Aux, "Datos de habitacion Suite", JOptionPane.INFORMATION_MESSAGE, icon);
     }
    
     @Override

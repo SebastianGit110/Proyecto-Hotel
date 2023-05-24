@@ -1,5 +1,6 @@
 package hotelproject;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class HabFamiliar extends Habitaciones<Integer,Integer,String,Double>{
@@ -8,7 +9,8 @@ public class HabFamiliar extends Habitaciones<Integer,Integer,String,Double>{
     public int salaJuegos = 0, cunas = 0, piscina = 0;
     public int guarderia = 0, cine = 0, miniClub = 0;
     public int lavanderia = 0;
-   
+    ImageIcon icon = new ImageIcon("src/imagenes/sofa.png");
+    
     //Constructores
     public HabFamiliar(){
     }
@@ -25,8 +27,7 @@ public class HabFamiliar extends Habitaciones<Integer,Integer,String,Double>{
                 + getCantidadHabitaciones() + " habitaciones y " + getTamañoBaño() + " banos.\nPor un valor por dia de: " + getValor() + "\n"
                 + "\nOfrece los siguientes servicios: \nRoom service \nSala de juegos \nCunas \nPiscina \nGuarderia \nCine \nMini club \nLavanderia";
        
-        JOptionPane.showMessageDialog(null, Aux,
-                "Datos de habitacion Familiar", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, Aux, "Datos de habitacion Familiar", JOptionPane.INFORMATION_MESSAGE, icon);
     }
    
     @Override

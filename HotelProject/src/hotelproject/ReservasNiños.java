@@ -1,6 +1,7 @@
 package hotelproject;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class ReservasNiños extends Reservas{
@@ -8,6 +9,7 @@ public class ReservasNiños extends Reservas{
     //ArrayList para niños
     public ArrayList<ReservasNiños> reservaNiño = new ArrayList<>();
     public int indiceNi = -1; //Se inicializa con -1 para saber si el objeto no existe
+    ImageIcon icon = new ImageIcon("src/imagenes/contento.png");
     
     //Constructor vacio
     public ReservasNiños(){
@@ -16,8 +18,8 @@ public class ReservasNiños extends Reservas{
     //Constructor reservas niños
     public ReservasNiños(String i){ //
         try{
-            this.nombres = JOptionPane.showInputDialog("Nombres del Niño: ");
-            String Edad = JOptionPane.showInputDialog("Edad del Niño: ");
+            this.nombres = (String) JOptionPane.showInputDialog(null, "Nombres del Niño: ", "Niño ", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+            String Edad = (String) JOptionPane.showInputDialog(null, "Edad del Niño: ", "Niño ", JOptionPane.QUESTION_MESSAGE, icon, null, "");
             this.edad = Integer.parseInt(Edad);
         }catch(Exception e){
             System.out.println("No ingreso el tipo de dato correcto ");

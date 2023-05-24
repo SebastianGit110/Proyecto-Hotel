@@ -4,11 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class HotelProject {
 
     public static void main(String[] args) {
 
+        //Imagenes
+        ImageIcon icon = new ImageIcon("src/imagenes/calendario.png");
+        ImageIcon lista = new ImageIcon("src/imagenes/lista.png");
+        ImageIcon llave = new ImageIcon("src/imagenes/llave.png");
+        
         Scanner in = new Scanner(System.in);
         Scanner in2 = new Scanner(System.in);
 
@@ -82,8 +88,9 @@ public class HotelProject {
             System.out.println("Escribiendo...");
             //escribir.write("Inicia el archivo \r\n");
             for (int j = 0; j < 8; j++) {
-                String Opcion = JOptionPane.showInputDialog(null, "1. Realizar reserva \n2. Escoger servicios \n3. Realizar check-in "
-                        + "\n4. Mostrar tipo de habitacion \n5. Realizar check-out \n6. Salir");
+                String Opcion = (String) JOptionPane.showInputDialog(null, "1. Realizar reserva \n2. Escoger servicios "
+                        + "\n3. Realizar check-in \n4. Mostrar tipo de habitacion \n5. Realizar check-out \n6. Salir",
+                        "Menu principal", JOptionPane.QUESTION_MESSAGE, lista, null, "");
                 int opcion = Integer.parseInt(Opcion);
 
                 switch (opcion) {
@@ -142,7 +149,7 @@ public class HotelProject {
 
                         //Numero de habitaciones
                         for(int m=0;m<5;m++){
-                            String numHab = JOptionPane.showInputDialog("Cuantas habitaciones necesitan ");
+                            String numHab = (String) JOptionPane.showInputDialog(null, "Cuantas habitaciones necesitan: ", "Habitaciones", JOptionPane.QUESTION_MESSAGE, llave, null, "");
                             NumHab = Integer.parseInt(numHab);
 
                             //Comprueba que el numero que ingrese sea >0
@@ -153,7 +160,7 @@ public class HotelProject {
 
                             //Tipo de habitaciones
                             for (int i = 0; i < NumHab; i++) {
-                                TipoHab = JOptionPane.showInputDialog("Cual es la " + (i + 1) + " habitacion \nMatrimonial \nFamiliar \nSuite");
+                                TipoHab = (String) JOptionPane.showInputDialog(null, "Cual es la " + (i + 1) + " habitacion \nMatrimonial \nFamiliar \nSuite", "Habitaciones", JOptionPane.QUESTION_MESSAGE, llave, null, "");
 
                                 if (TipoHab.toLowerCase().equals("matrimonial")) {
                                     ConMat++;
@@ -166,7 +173,7 @@ public class HotelProject {
 
                             //Pregunta si quiere eliminar alguna habitacion
                             for(int i=0;i<6;i++){
-                                delHab = JOptionPane.showInputDialog("¿Quiere eliminar alguna de las habitaciones seleccionadas?");
+                                delHab = (String) JOptionPane.showInputDialog(null, "¿Quiere eliminar alguna de las habitaciones seleccionadas?", "Habitaciones", JOptionPane.QUESTION_MESSAGE, llave, null, "");
                                 if(delHab.toLowerCase().equals("si")){
                                     String cualHab = JOptionPane.showInputDialog("Que habitacion");
 
@@ -231,14 +238,20 @@ public class HotelProject {
                         //Dias para reservar
                         String CanDias = JOptionPane.showInputDialog("Por cuantos dias quieren hacer la reserva ");
                         canDias = Integer.parseInt(CanDias);
-                        DiaEnt = JOptionPane.showInputDialog("Fecha de llegada ");
-                        DiaSal = JOptionPane.showInputDialog("Fecha de salida ");
+                        DiaEnt = (String) JOptionPane.showInputDialog(null, "Fecha de llegada ", "Dia llegada", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+                        DiaSal = (String) JOptionPane.showInputDialog(null, "Fecha de salida ", "Dia salida", JOptionPane.QUESTION_MESSAGE, icon, null, "");
                         escribirDatos.write("\r\nDias reservados: " + canDias + "\r\n \r\n" +
                                 "Fecha de entrada: " + DiaEnt + "\r\n" + 
                                 "Fecha de salida: " + DiaSal + "\r\n \r\n");
                         break;
                     
                     case 2:
+                        if (reserva == false) {
+                            System.out.println("Primero tienes que realizar la reserva");
+                            j--;
+                            continue;
+                        }
+                        
                         //Pedir servicios
                         //Llama al metodo que elige los servicios con la referencia del objeto declarada anteriormente
                         System.out.println("\nDe las habitaciones seleccionadas, elija alguno de los servicios");

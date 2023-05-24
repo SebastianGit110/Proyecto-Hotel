@@ -1,5 +1,6 @@
 package hotelproject;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class HabMatrimonial extends Habitaciones<Integer,Integer,String,Double>{
@@ -7,7 +8,8 @@ public class HabMatrimonial extends Habitaciones<Integer,Integer,String,Double>{
     //Variables para contar servicios
     public int secador = 0, escritorio = 0, tv = 0, telefonos = 0;
     public int zapatillas = 0, albornoces = 0;
-   
+    ImageIcon icon = new ImageIcon("src/imagenes/cuarto.png");
+    
     //Constructores
     public HabMatrimonial(){
     }
@@ -25,8 +27,7 @@ public class HabMatrimonial extends Habitaciones<Integer,Integer,String,Double>{
                 + " \nOfrece los siguientes servicios: \nRoom service \nSecador \nZapatillas \nAlbornoces \nJacuzzi \nEscritorio \nTelevision \nTelefonos"
                 + "\nProductos para higiene";
        
-        JOptionPane.showMessageDialog(null, Aux,
-                "Datos de habitacion Matrimonial", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, Aux, "Datos de habitacion Matrimonial", JOptionPane.INFORMATION_MESSAGE, icon);
     }
    
     @Override
